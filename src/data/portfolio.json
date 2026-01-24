@@ -18,12 +18,14 @@
     {
       "company": "Kinectrics",
       "role": "IT Automation Intern",
+      "detailId": "work-nabil",
       "date": "Sep 2025 - Present",
       "location": "Toronto, ON",
       "description": "Developed an internal Natural Language Query tool to automate data extraction from Excel/CSV, reducing manual reporting time."
     },
     {
       "company": "Nabil Bank Limited",
+      "detailId": "work-nabil",
       "role": "IT Support Specialist",
       "date": "Jul 2019 - Nov 2023",
       "location": "Kathmandu",
@@ -33,26 +35,35 @@
   "education": [
     {
       "school": "George Brown College",
+      "detailId": "edu-gbc",
       "degree": "Post-Grad in Applied AI",
+      "location": "Toronto, ON",
+      "gpa": "3.8",
       "date": "2025"
     },
     {
       "school": "George Brown College",
+      "detailId": "edu-gbc",
       "degree": "Post-Grad in Mobile App Dev",
+      "location": "Toronto, ON",
+      "gpa": "3.9",
       "date": "2024"
     },
     {
       "school": "JNTU",
+      "detailId": "edu-gbc",
       "degree": "Bachelors in Computer Science",
+      "location": "Hyderabad, India",
+      "gpa": "3.7",
       "date": "2018"
     }
   ],
-  "certs": [
-    { "name": "Microsoft 365 Endpoint Admin", "date": "Jan 2026", "issuer": "Microsoft" },
-    { "name": "Azure Fundamentals", "date": "Jan 2026", "issuer": "Microsoft" },
-    { "name": "Fortinet NSE3", "date": "Jan 2026", "issuer": "Fortinet" },
-    { "name": "CompTIA A+", "date": "Nov 2025", "issuer": "CompTIA" },
-    { "name": "CCNA Routing & Switching", "date": "2022", "issuer": "Cisco" }
+"certs": [
+    { "name": "Microsoft 365 Endpoint Admin", "date": "Jan 2026", "issuer": "Microsoft", "url": "https://learn.microsoft.com/api/credentials/share/..." },
+    { "name": "Azure Fundamentals", "date": "Jan 2026", "issuer": "Microsoft", "url": "#" },
+    { "name": "Fortinet NSE3", "date": "Jan 2026", "issuer": "Fortinet", "url": "#" },
+    { "name": "CompTIA A+", "date": "Nov 2025", "issuer": "CompTIA", "url": "#" },
+    { "name": "CCNA Routing & Switching", "date": "2022", "issuer": "Cisco", "url": "#" }
   ],
   "skills": [
     {

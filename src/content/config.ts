@@ -26,5 +26,5 @@ const projects = defineCollection({
     })
 });
 
-// Export both collections so Astro knows they exist
+// Export collections so Astro knows they exist
 export const collections = { blog, projects };

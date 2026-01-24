@@ -3,13 +3,31 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.jsx';
+import InteractiveList from '../components/InteractiveList.jsx';
 import data from '../data/portfolio.json';
-
-// Fetch Blog Posts
+import details from '../data/details.json';
 import { getCollection } from 'astro:content';
+
+// 1. Fetch Blog Posts (Sort by newest)
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 ).slice(0, 3);
+
+// 2. Helper to attach HTML content to JSON items
+function enhanceData(items) {
+    if (!items) return [];
+    return items.map((item) => {
+        if (item.detailId && details[item.detailId]) {
+            const detailContent = details[item.detailId];
+            return { ...item, html: detailContent.content };
+        }
+        return item;
+    });
+}
+
+// 3. Create the final data objects for React
+const enhancedWork = enhanceData(data.work);
+const enhancedEducation = enhanceData(data.education);
 ---
 
 <!doctype html>
@@ -22,7 +40,9 @@ const posts = (await getCollection('blog')).sort(
 		
 		<main class="flex-grow">
 			
-			<!-- HERO SECTION -->
+			<!-- =========================================
+			     HERO SECTION
+			     ========================================= -->
 			<section class="max-w-5xl mx-auto px-4 py-20 md:py-28">
 				<div class="grid md:grid-cols-3 gap-12 items-start">
 					<div class="md:col-span-2 space-y-6">
@@ -57,7 +77,9 @@ const posts = (await getCollection('blog')).sort(
 				</div>
 			</section>
 
-			<!-- SKILLS -->
+			<!-- =========================================
+			     SKILLS
+			     ========================================= -->
 			<section class="bg-slate-50 dark:bg-slate-800/50 border-y border-slate-200 dark:border-slate-800">
 				<div class="max-w-5xl mx-auto px-4 py-16">
 					<h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-8">Technical Competencies</h3>
@@ -78,7 +100,9 @@ const posts = (await getCollection('blog')).sort(
 				</div>
 			</section>
 
-			<!-- PROFESSIONAL TIMELINE (STACKED) -->
+			<!-- =========================================
+			     PROFESSIONAL TIMELINE (Interactive)
+			     ========================================= -->
 			<section class="max-w-4xl mx-auto px-4 py-20">
 				
 				<!-- 1. EXPERIENCE -->
@@ -86,17 +110,8 @@ const posts = (await getCollection('blog')).sort(
 					<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3">
 						<span class="text-primary">💼</span> Professional Experience
 					</h2>
-					<div class="relative border-l-2 border-slate-200 dark:border-slate-700 ml-3 space-y-12">
-						{data.work.map((job) => (
-							<div class="relative pl-10 group">
-								<div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-white dark:bg-darkBg border-4 border-slate-300 dark:border-slate-600 group-hover:border-primary transition-colors"></div>
-								<h3 class="text-xl font-bold text-slate-900 dark:text-white">{job.role}</h3>
-								<div class="text-primary font-medium mb-1">{job.company}</div>
-								<div class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-mono bg-slate-100 dark:bg-slate-800 inline-block px-2 py-1 rounded">{job.date}</div>
-								<p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl">{job.description}</p>
-							</div>
-						))}
-					</div>
+					<!-- React Component handles the click & modal -->
+					<InteractiveList client:load items={enhancedWork} type="work" />
 				</div>
 
 				<!-- 2. EDUCATION -->
@@ -104,15 +119,8 @@ const posts = (await getCollection('blog')).sort(
 					<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3">
 						<span class="text-primary">🎓</span> Education
 					</h2>
-					<div class="grid md:grid-cols-2 gap-6">
-						{data.education.map((edu) => (
-							<div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-colors bg-white dark:bg-slate-900">
-								<div class="text-sm text-slate-500 dark:text-slate-400 mb-1">{edu.date}</div>
-								<h3 class="font-bold text-lg text-slate-900 dark:text-white mb-1">{edu.school}</h3>
-								<div class="text-primary">{edu.degree}</div>
-							</div>
-						))}
-					</div>
+					<!-- React Component handles the click & modal -->
+					<InteractiveList client:load items={enhancedEducation} type="education" />
 				</div>
 
 				<!-- 3. CERTIFICATIONS -->
@@ -120,22 +128,53 @@ const posts = (await getCollection('blog')).sort(
 					<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3">
 						<span class="text-primary">📜</span> Certifications
 					</h2>
-					<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+					
+					<div class="flex flex-col gap-4">
 						{data.certs.map((cert) => (
-							<div class="p-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 flex items-center gap-3">
-								<div class="text-green-500">✓</div>
-								<div>
-									<div class="font-bold text-sm text-slate-900 dark:text-white leading-tight">{cert.name}</div>
-									<div class="text-xs text-slate-500 dark:text-slate-400 mt-1">{cert.issuer}</div>
+							<a 
+								href={cert.url} 
+								target="_blank"
+								class="group flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-primary hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+							>
+								<!-- Hover Effect Background -->
+								<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+								<!-- Icon / Issuer Badge -->
+								<div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 group-hover:scale-105 transition-transform z-10">
+									<span class="text-2xl">
+										{cert.issuer.includes('Microsoft') ? '🟦' : 
+										 cert.issuer.includes('Cisco') ? '📡' : 
+										 cert.issuer.includes('Fortinet') ? '🛡️' : 
+										 '🏅'}
+									</span>
 								</div>
-							</div>
+
+								<!-- Content -->
+								<div class="flex-grow min-w-0 z-10">
+									<h3 class="text-base md:text-lg font-bold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">
+										{cert.name}
+									</h3>
+									<div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+										<span>{cert.issuer}</span>
+										<span class="w-1 h-1 rounded-full bg-slate-300"></span>
+										<span>{cert.date}</span>
+									</div>
+								</div>
+
+								<!-- Verify Action -->
+								<div class="hidden sm:flex items-center gap-1 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 z-10">
+									VERIFY <span>↗</span>
+								</div>
+								<div class="sm:hidden text-slate-300 group-hover:text-primary z-10">↗</div>
+							</a>
 						))}
 					</div>
 				</div>
-
 			</section>
 
-			<!-- PROJECTS -->
+			<!-- =========================================
+			     PROJECTS
+			     ========================================= -->
 			<section class="bg-slate-50 dark:bg-slate-800/50 border-y border-slate-200 dark:border-slate-800">
 				<div class="max-w-5xl mx-auto px-4 py-20">
 					<div class="flex items-center justify-between mb-12">
@@ -150,7 +189,9 @@ const posts = (await getCollection('blog')).sort(
 				</div>
 			</section>
 
-			<!-- LATEST BLOG POSTS -->
+			<!-- =========================================
+			     LATEST BLOG POSTS (New Premium Design)
+			     ========================================= -->
 			<section class="max-w-5xl mx-auto px-4 py-20">
 				<div class="flex items-center justify-between mb-8">
 					<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Latest Documentation</h2>
@@ -158,10 +199,39 @@ const posts = (await getCollection('blog')).sort(
 				</div>
 				<div class="grid md:grid-cols-3 gap-6">
 					{posts.map((post) => (
-						<a href={`/blog/${post.slug}/`} class="group block p-6 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary transition-colors">
-							<div class="text-sm text-slate-400 mb-2">{post.data.pubDate.toLocaleDateString()}</div>
-							<h3 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-primary mb-2">{post.data.title}</h3>
-							<p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">{post.data.description}</p>
+						<a href={`/blog/${post.slug}/`} class="group relative flex flex-col h-full bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-2xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+							
+							<!-- 1. Gradient Overlay (Appears on Hover) -->
+							<div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+							<!-- 2. Header: Date & Icon -->
+							<div class="relative flex items-center justify-between mb-4 z-10">
+								<span class="text-xs font-mono font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 group-hover:border-primary/30 transition-colors">
+									{post.data.pubDate.toLocaleDateString()}
+								</span>
+								
+								<!-- Document Icon -->
+								<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+									<polyline points="14 2 14 8 20 8"/>
+								</svg>
+							</div>
+
+							<!-- 3. Content -->
+							<div class="relative flex-grow z-10">
+								<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary transition-colors leading-tight">
+									{post.data.title}
+								</h3>
+								<p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed mb-6">
+									{post.data.description}
+								</p>
+							</div>
+
+							<!-- 4. Footer: 'Read Article' Link -->
+							<div class="relative mt-auto flex items-center text-primary font-bold text-sm z-10">
+								Read Article 
+								<span class="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+							</div>
 						</a>
 					))}
 				</div>
