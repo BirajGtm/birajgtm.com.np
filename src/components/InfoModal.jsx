@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 export default function InfoModal({ isOpen, onClose, data }) {
-  const bodyRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) {
