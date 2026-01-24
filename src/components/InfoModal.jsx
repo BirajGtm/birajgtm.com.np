@@ -1,6 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { marked } from 'marked';
 
 export default function InfoModal({ isOpen, onClose, data }) {
+  const htmlContent = useMemo(() => {
+    if (!data?.content) return '';
+    return marked.parse(data.content);
+  }, [data?.content]);
 
   useEffect(() => {
     if (isOpen) {
@@ -50,8 +55,8 @@ export default function InfoModal({ isOpen, onClose, data }) {
           className="flex-1 overflow-y-auto p-6"
         >
           <div 
-            className="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300"
-            dangerouslySetInnerHTML={{ __html: data.content }} 
+            className="max-w-none text-slate-700 dark:text-slate-300 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mt-4 [&_h2]:mb-2 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-1"
+            dangerouslySetInnerHTML={{ __html: htmlContent }} 
           />
         </div>
       </div>
