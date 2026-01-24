@@ -1,0 +1,95 @@
+{
+  "basics": {
+    "name": "Biraj Gautam",
+    "role": "IT Support Specialist",
+    "subRole": "Automation Engineer",
+    "tagline": "Bridging Enterprise Infrastructure & Modern Automation.",
+    "email": "birajgtm@gmail.com",
+    "phone": "437 667 9502",
+    "location": "North York, ON",
+    "status": "Open to Work",
+    "resumeUrl": "/resume.pdf"
+  },
+  "socials": [
+    { "network": "LinkedIn", "url": "https://linkedin.com/in/birajgtm", "icon": "linkedin" },
+    { "network": "GitHub", "url": "https://github.com/birajgtm", "icon": "github" }
+  ],
+  "work": [
+    {
+      "company": "Kinectrics",
+      "role": "IT Automation Intern",
+      "date": "Sep 2025 - Present",
+      "location": "Toronto, ON",
+      "description": "Developed an internal Natural Language Query tool to automate data extraction from Excel/CSV, reducing manual reporting time."
+    },
+    {
+      "company": "Nabil Bank Limited",
+      "role": "IT Support Specialist",
+      "date": "Jul 2019 - Nov 2023",
+      "location": "Kathmandu",
+      "description": "Managed Active Directory, M365, and FortiGate Firewalls for 2,000+ users. Resolved 25-30 tickets daily with 95% first-contact resolution."
+    }
+  ],
+  "education": [
+    {
+      "school": "George Brown College",
+      "degree": "Post-Grad in Applied AI",
+      "date": "2025"
+    },
+    {
+      "school": "George Brown College",
+      "degree": "Post-Grad in Mobile App Dev",
+      "date": "2024"
+    },
+    {
+      "school": "JNTU",
+      "degree": "Bachelors in Computer Science",
+      "date": "2018"
+    }
+  ],
+  "certs": [
+    { "name": "Microsoft 365 Endpoint Admin", "date": "Jan 2026", "issuer": "Microsoft" },
+    { "name": "Azure Fundamentals", "date": "Jan 2026", "issuer": "Microsoft" },
+    { "name": "Fortinet NSE3", "date": "Jan 2026", "issuer": "Fortinet" },
+    { "name": "CompTIA A+", "date": "Nov 2025", "issuer": "CompTIA" },
+    { "name": "CCNA Routing & Switching", "date": "2022", "issuer": "Cisco" }
+  ],
+  "skills": [
+    {
+      "category": "Infrastructure",
+      "items": [
+        { "name": "Active Directory", "icon": "microsoft" },
+        { "name": "Microsoft 365", "icon": "microsoft" },
+        { "name": "FortiGate VPN", "icon": "fortinet" },
+        { "name": "VMware ESXi", "icon": "vmware" }
+      ]
+    },
+    {
+      "category": "Automation & Code",
+      "items": [
+        { "name": "Python", "icon": "python" },
+        { "name": "Bash Scripting", "icon": "gnu-bash" },
+        { "name": "React", "icon": "react" },
+        { "name": "SQL", "icon": "postgresql" }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Automated Self-Service Support",
+      "description": "Built a Python-based AI tool (AskGeorge+) to reduce Tier-1 helpdesk tickets by providing instant answers.",
+      "tags": ["Python", "LangChain", "ITSM"],
+      "link": "/projects/ask-george",
+      "image": "", 
+      "fallbackIcon": "python"
+    },
+    {
+      "title": "Enterprise Network Hardening",
+      "description": "Configured FortiGate firewalls and granular security policies for web filtering and VPN access across 150+ branches.",
+      "tags": ["Fortinet", "Security", "Networking"],
+      "link": "/projects/network-hardening",
+      "image": "",
+      "fallbackIcon": "shield"
+    }
+  ]
+}
