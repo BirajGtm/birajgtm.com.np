@@ -47,7 +47,6 @@ export default function InfoModal({ isOpen, onClose, data }) {
 
         {/* Content */}
         <div 
-          ref={bodyRef}
           className="flex-1 overflow-y-auto p-6"
         >
           <div 
