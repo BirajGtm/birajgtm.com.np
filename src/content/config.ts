@@ -23,6 +23,8 @@ const projects = defineCollection({
         heroImage: z.string().optional(),
         repoUrl: z.string().optional(),
         liveUrl: z.string().optional(),
+        role: z.string().optional(),
+        timeline: z.string().optional(),
     })
 });
 

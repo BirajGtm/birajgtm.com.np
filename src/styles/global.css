@@ -152,14 +152,17 @@ hr {
 
 
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
-  /* Define our Custom Colors here directly in CSS */
-  --color-primary: #2563eb; /* Enterprise Blue */
-  --color-darkBg: #0f172a;  /* Slate 900 */
-  
-  /* Define Fonts */
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+	/* Define our Custom Colors here directly in CSS */
+	--color-primary: #2563eb;
+	/* Enterprise Blue */
+	--color-darkBg: #0f172a;
+	/* Slate 900 */
+
+	/* Define Fonts */
+	--font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
 /* This allows the Dark Mode Toggle to work by looking for a "dark" class */
@@ -168,14 +171,14 @@ hr {
 /* Basic Layout Reset */
 html,
 body {
-  @apply h-full w-full;
+	@apply h-full w-full;
 }
 
 body {
-  @apply bg-white text-slate-900 antialiased;
+	@apply bg-white text-slate-900 antialiased;
 }
 
 /* Dark Mode Styles */
 :root.dark body {
-  @apply bg-darkBg text-slate-200;
+	@apply bg-darkBg text-slate-200;
 }

@@ -13,6 +13,9 @@ const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 ).slice(0, 3);
 
+// Fetch Projects (Same approach as blog)
+const projects = await getCollection('projects');
+
 // Attach HTML content to work/education items
 function enhanceData(items: any[]) {
     if (!items) return [];
@@ -181,8 +184,16 @@ const enhancedEducation = enhanceData(data.education);
 						<a href="/projects" class="hidden md:inline-flex text-primary font-medium hover:underline">View All →</a>
 					</div>
 					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-						{data.projects.map((project) => (
-							<ProjectCard client:visible {...project} />
+						{projects.map((project) => (
+							<ProjectCard 
+								client:visible 
+								title={project.data.title}
+								description={project.data.description}
+								tags={project.data.stack}
+								link={`/projects/${project.id}`}
+								image={project.data.heroImage}
+								fallbackIcon={project.data.stack?.[0]?.toLowerCase() || 'code'}
+							/>
 						))}
 					</div>
 				</div>
