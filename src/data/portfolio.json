@@ -69,19 +69,19 @@
     {
       "category": "Infrastructure",
       "items": [
-        { "name": "Active Directory", "icon": "microsoft" },
-        { "name": "Microsoft 365", "icon": "microsoft" },
-        { "name": "FortiGate VPN", "icon": "fortinet" },
-        { "name": "VMware ESXi", "icon": "vmware" }
+        { "name": "Active Directory", "icon": "microsoft", "level": "expert" },
+        { "name": "Microsoft 365", "icon": "microsoft", "level": "advanced" },
+        { "name": "FortiGate VPN", "icon": "fortinet", "level": "intermediate" },
+        { "name": "VMware ESXi", "icon": "vmware", "level": "intermediate" }
       ]
     },
     {
       "category": "Automation & Code",
       "items": [
-        { "name": "Python", "icon": "python" },
-        { "name": "Bash Scripting", "icon": "gnu-bash" },
-        { "name": "React", "icon": "react" },
-        { "name": "SQL", "icon": "postgresql" }
+        { "name": "Python", "icon": "python", "level": "expert" },
+        { "name": "Bash Scripting", "icon": "gnu-bash", "level": "advanced" },
+        { "name": "React", "icon": "react", "level": "intermediate" },
+        { "name": "SQL", "icon": "postgresql", "level": "advanced" }
       ]
     }
   ],

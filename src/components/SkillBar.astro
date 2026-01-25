@@ -1,0 +1,24 @@
+<!-- src/components/SkillBar.astro -->
+---
+import { Props } from "astro";
+interface Props {
+  name: string;
+  level: string; // expert, advanced, intermediate, beginner
+}
+---
+{/** Map level to width percentage */}
+{const levelMap: Record<string, number> = {
+  expert: 100,
+  advanced: 80,
+  intermediate: 60,
+  beginner: 40,
+};
+const width = levelMap[props.level?.toLowerCase()] ?? 40;
+}
+<div class="flex items-center gap-2 mb-2">
+  <span class="text-sm font-medium min-w-[80px]">{props.name}</span>
+  <div class="flex-1 h-4 bg-slate-200 dark:bg-slate-700 rounded">
+    <div class="h-4 bg-primary rounded" style={`width: ${width}%`}></div>
+  </div>
+  <span class="text-xs uppercase text-slate-500 dark:text-slate-400">{props.level}</span>
+</div>

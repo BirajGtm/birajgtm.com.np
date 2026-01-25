@@ -1,37 +1,45 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import ThemeToggle from "./ThemeToggle.jsx";
-import { SITE_TITLE } from "../consts";
+
+// Check if we're on the homepage
+const isHomepage = Astro.url.pathname === "/";
 ---
 
 <header
-  class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-darkBg/70 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300"
+  class="fixed top-0 inset-x-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-darkBg/70 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300"
 >
-  <nav class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-    <!-- LOGO / NAME -->
-    <h2 class="text-xl font-bold tracking-tight">
+  <nav class="max-w-6xl mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <!-- LOGO -->
       <a
         href="/"
-        class="text-slate-900 dark:text-white hover:text-primary transition-colors"
+        class="text-xl font-bold text-slate-900 dark:text-white hover:text-primary transition-colors"
       >
-        Biraj<span class="text-primary">.IT</span>
+        Biraj Gautam
       </a>
-    </h2>
 
-    <!-- NAVIGATION LINKS -->
-    <div class="flex items-center gap-6">
-      <div class="hidden md:flex gap-6">
+      <!-- DESKTOP NAV -->
+      <div class="hidden md:flex items-center gap-6">
         <HeaderLink href="/">Home</HeaderLink>
+        {
+          isHomepage && (
+            <>
+              <HeaderLink href="#skills">Skills</HeaderLink>
+              <HeaderLink href="#experience">Experience</HeaderLink>
+              <HeaderLink href="#certifications">Certifications</HeaderLink>
+            </>
+          )
+        }
         <HeaderLink href="/projects">Projects</HeaderLink>
         <HeaderLink href="/blog">Blog</HeaderLink>
       </div>
 
       <!-- SEPARATOR -->
-      <div class="h-6 w-px bg-slate-300 dark:bg-slate-700 hidden md:block">
+      <div class="hidden md:block w-px h-6 bg-slate-300 dark:bg-slate-700">
       </div>
 
-      <!-- DARK MODE TOGGLE (React Component) -->
-      <!-- client:load is REQUIRED for React to work interactively -->
+      <!-- THEME TOGGLE -->
       <ThemeToggle client:load />
     </div>
   </nav>
