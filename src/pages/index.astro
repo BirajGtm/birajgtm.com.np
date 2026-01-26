@@ -100,7 +100,7 @@ const featuredSkills = data.skills
 					</div>
 					<!-- Terminal Graphic (Interactive) -->
 					<div class="flex justify-center items-center mt-8 lg:mt-0">
-						<InteractiveTerminal client:load data={data} />
+						<InteractiveTerminal client:only="react" data={data} />
 					</div>
 				</div>
 			</section>

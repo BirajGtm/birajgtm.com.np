@@ -1,20 +1,87 @@
 /**
  * INTERACTIVE TERMINAL (CLI)
  * A Zsh-style command interface allowing users to query skills, projects, and contact info.
- * Maps 'help', 'ls', 'skills', and 'projects' commands directly to data in portfolio.json.
+ * Enhanced for CMD+K Global Command Palette:
+ * - Functional Window Controls: Red (Close), Yellow (Minimize), Green (Clear).
+ * - Web Audio API: Immersive mechanical typing sounds with SSR safety.
  */
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function InteractiveTerminal({ data }) {
+/**
+ * @param {Object} props
+ * @param {any} props.data - Portfolio data
+ * @param {boolean} [props.isModal] - Whether to show in modal mode
+ * @param {boolean} [props.isFullscreen] - Whether currently in fullscreen
+ * @param {Function} [props.onClose] - Close handler
+ * @param {Function} [props.onMinimize] - Minimize handler
+ * @param {Function} [props.onFullscreen] - Fullscreen toggle handler
+ * @param {string} [props.shortcut] - OS-specific shortcut string (e.g., CMD+K)
+ */
+export default function InteractiveTerminal({ 
+  data, 
+  isModal = false, 
+  isFullscreen = false,
+  onClose = () => {}, 
+  onMinimize = () => {}, 
+  onFullscreen = () => {}, 
+  shortcut = 'CMD+K' 
+}) {
+  // --- UTILS ---
+  const renderTerminalText = (text) => {
+    if (!text) return text;
+    // Split by the shortcut string to highlight it
+    const parts = text.split(new RegExp(`(${shortcut})`, 'g'));
+    return parts.map((part, i) => 
+      part === shortcut 
+        ? <span key={i} className="text-secondary font-black brightness-125 underline decoration-secondary/30 underline-offset-4">{part}</span> 
+        : part
+    );
+  };
+
   const [history, setHistory] = useState([
     { type: 'input', text: 'whoami' },
     { type: 'output', text: `"${data.basics.role}"` },
-    { type: 'input', text: 'uptime' },
-    { type: 'output', text: '4+ Years Experience' }
+    { type: 'input', text: 'help' },
+    { type: 'output', text: `Available commands: whoami, uptime, ls, cat [file], clear, skills, projects, contact, date\n\n[ Info: Press ${shortcut} anytime to toggle this hub ]` }
   ]);
   const [input, setInput] = useState('');
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
+
+  const clearHistory = () => setHistory([]);
+
+  // --- AUDIO UTILITY (Web Audio API) ---
+  const audioCtx = useRef(null);
+  const playClick = () => {
+    if (typeof window === 'undefined') return;
+    try {
+      if (!audioCtx.current) {
+        audioCtx.current = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      const ctx = audioCtx.current;
+      if (ctx.state === 'suspended') ctx.resume();
+      
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      // Sharper Sine wave for a crisp, high-fidelity click
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(400, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.03);
+      
+      // Tight, high-speed envelope
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.03);
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.start();
+      osc.stop(ctx.currentTime + 0.03);
+    } catch (e) {
+      // Audio might be blocked by browser policy
+    }
+  };
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -23,13 +90,13 @@ export default function InteractiveTerminal({ data }) {
   }, [history]);
 
   const commands = {
-    help: () => 'Available commands: whoami, uptime, ls, cat [file], clear, skills, projects, contact, date',
+    help: () => `Available commands: whoami, uptime, ls, cat [file], clear, skills, projects, contact, date\n\nShortcut: ${shortcut} to toggle terminal`,
     whoami: () => `${data.basics.name} - ${data.basics.role}`,
     uptime: () => 'System active since 2019. Current uptime: 4+ years of professional IT automation experience.',
     date: () => new Date().toString(),
     ls: () => 'skills.md  projects.md  contact.md  about.txt',
     clear: () => {
-      setHistory([]);
+      clearHistory();
       return null;
     },
     skills: () => data.skills.map(s => `• [${s.category}] ${s.items.map(i => i.name).join(', ')}`).join('\n'),
@@ -51,6 +118,7 @@ export default function InteractiveTerminal({ data }) {
 
   const handleCommand = (e) => {
     if (e.key === 'Enter') {
+      playClick();
       const trimmedInput = input.trim();
       const parts = trimmedInput.split(/\s+/);
       const cmd = parts[0].toLowerCase();
@@ -63,7 +131,7 @@ export default function InteractiveTerminal({ data }) {
       }
 
       if (cmd === 'clear') {
-        setHistory([]);
+        clearHistory();
         setInput('');
         return;
       }
@@ -83,66 +151,107 @@ export default function InteractiveTerminal({ data }) {
       
       setHistory(newHistory);
       setInput('');
+    } else {
+      if (e.key.length === 1 || e.key === 'Backspace') playClick();
     }
   };
 
   return (
     <div 
-      className="bg-slate-900 rounded-xl shadow-2xl border border-slate-800 font-mono text-xs sm:text-sm transform transition-all duration-300 hover:scale-[1.01] flex flex-col h-[300px] sm:h-[420px] w-full max-w-2xl overflow-hidden cursor-text"
+      className={`bg-slate-900 shadow-2xl border border-slate-800 font-mono text-xs sm:text-sm flex flex-col overflow-hidden cursor-text transition-all duration-500
+        ${isModal ? 'w-full h-full rounded-none sm:rounded-2xl sm:max-w-4xl sm:h-[80vh]' : 'rounded-xl h-[300px] sm:h-[420px] w-full max-w-2xl hover:scale-[1.01]'}`}
       onClick={() => inputRef.current?.focus()}
     >
       {/* Title Bar */}
-      <div className="flex items-center justify-between px-4 py-2 bg-slate-800/50 border-b border-slate-800">
-        <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+      <div className="flex items-center justify-between px-4 py-3 bg-slate-800/80 border-b border-white/5 backdrop-blur-md sticky top-0 z-10">
+        <div className="flex gap-2.5 group/controls">
+          <button 
+            onClick={(e) => { e.stopPropagation(); clearHistory(); onClose?.(); }}
+            className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] border border-[#e0443e] hover:brightness-110 active:brightness-90 transition-all shadow-sm flex items-center justify-center text-[8px] text-black font-black"
+            title="Close & Clear"
+          >
+            <span className="opacity-0 group-hover/controls:opacity-40 transition-opacity">✕</span>
+          </button>
+          <button 
+            onClick={(e) => { e.stopPropagation(); onMinimize?.(); }}
+            className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] border border-[#dea123] hover:brightness-110 active:brightness-90 transition-all shadow-sm flex items-center justify-center text-[10px] text-black font-black"
+            title="Minimize"
+          >
+            <span className="opacity-0 group-hover/controls:opacity-40 transition-opacity -mt-1">−</span>
+          </button>
+          <button 
+            onClick={(e) => { 
+              e.stopPropagation(); 
+              if (isFullscreen) return; // Do nothing if already full
+              if (isModal) {
+                onFullscreen?.();
+              } else {
+                // For standalone terminal on home: Launch the Hub
+                window.dispatchEvent(new CustomEvent('open-terminal-hub-fullscreen'));
+              }
+            }}
+            disabled={isFullscreen}
+            className={`w-3.5 h-3.5 rounded-full border shadow-sm flex items-center justify-center text-[7px] text-black font-black transition-all
+              ${isFullscreen 
+                ? 'bg-green-900/30 border-green-900/20 cursor-not-allowed opacity-40' 
+                : 'bg-[#27c93f] border-[#1aab29] hover:brightness-110 active:brightness-90 cursor-pointer'}`}
+            title={isFullscreen ? "Already Fullscreen" : "Launch Fullscreen Hub"}
+          >
+            <span className={`opacity-0 ${!isFullscreen ? 'group-hover/controls:opacity-40' : ''} transition-opacity`}>▢</span>
+          </button>
         </div>
-        <div className="text-[10px] text-slate-500 font-bold tracking-widest uppercase">zsh — 80x24</div>
-        <div className="w-12"></div>
+        <div className="text-[10px] text-slate-400 font-black tracking-[0.2em] uppercase opacity-60 flex gap-4">
+          <span>{isModal ? 'System Control Hub — zsh' : 'zsh — 80x24'}</span>
+          <span className="hidden sm:inline text-secondary font-black animate-pulse brightness-125 border-l border-white/10 pl-4">{shortcut}</span>
+        </div>
+        <div className="w-16 flex justify-end text-[10px] font-bold text-slate-500">
+          {isModal ? 'SSH:80' : ''}
+        </div>
       </div>
 
       {/* Terminal View */}
       <div 
         ref={scrollRef}
-        className="flex-1 p-4 overflow-y-auto custom-scrollbar space-y-2"
+        className="flex-1 p-6 overflow-y-auto custom-scrollbar space-y-3 bg-[#030712]/90"
       >
-        <div className="text-slate-500 text-[10px] mb-4">
-          Type 'help' to see available commands
+        <div className="text-primary/60 text-[10px] font-black uppercase tracking-widest mb-6 py-2 border-y border-primary/10">
+          Last login: {new Date().toLocaleString()} on ttys000
         </div>
         
         {history.map((line, i) => (
           <div key={i} className="leading-relaxed">
             {line.type === 'input' ? (
               <div className="flex gap-2">
-                <span className="text-green-400 font-bold">➜</span>
-                <span className="text-blue-400">~</span>
-                <span className="text-white">{line.text}</span>
+                <span className="text-primary font-black">➜</span>
+                <span className="text-secondary font-bold">~</span>
+                <span className="text-white font-medium">{line.text}</span>
               </div>
             ) : (
-              <div className="text-slate-300 pl-4 whitespace-pre-wrap opacity-90">{line.text}</div>
+              <div className="text-slate-300 pl-4 whitespace-pre-wrap opacity-95 border-l-2 border-slate-800 ml-1 py-1 italic">
+                {renderTerminalText(line.text)}
+              </div>
             )}
           </div>
         ))}
 
         {/* Input Line */}
         <div className="flex gap-2 items-center">
-          <span className="text-green-400 font-bold">➜</span>
-          <span className="text-blue-400">~</span>
+          <span className="text-primary font-black">➜</span>
+          <span className="text-secondary font-bold">~</span>
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleCommand}
-            className="flex-1 bg-transparent border-none outline-none text-white focus:ring-0 p-0"
+            className="flex-1 bg-transparent border-none outline-none text-white focus:ring-0 p-0 caret-primary font-medium"
             autoFocus
           />
         </div>
       </div>
       
-      {/* Bottom Help Bar */}
-      <div className="px-4 py-1.5 bg-primary/10 border-t border-primary/20 flex gap-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
+      {/* Bottom Help Bar (Ghost Mode) */}
+      <div className="px-6 py-2 bg-black/40 border-t border-white/5 flex gap-6 overflow-x-auto whitespace-nowrap scrollbar-hide backdrop-blur-xl">
          {['help', 'ls', 'skills', 'projects', 'contact', 'clear'].map(cmd => (
            <button 
              key={cmd}
@@ -151,7 +260,7 @@ export default function InteractiveTerminal({ data }) {
                setInput(cmd);
                inputRef.current?.focus();
              }}
-             className="text-[10px] font-bold text-primary hover:text-white transition-colors"
+             className="text-[10px] font-black text-slate-500 hover:text-primary transition-colors uppercase tracking-widest"
            >
              {cmd}
            </button>
