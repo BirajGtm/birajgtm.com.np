@@ -1,4 +1,9 @@
 ---
+/**
+ * BLOG POST LAYOUT
+ * The standard template for technical articles and blog entries.
+ * Includes: Breadcrumb navigation, Schema.org Article markup, and automatic Social Share buttons.
+ */
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
@@ -16,7 +21,7 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
   Astro.props;
 
 // Build breadcrumb items
-const breadcrumbItems = [
+const breadcrumbItems: { label: string; href?: string }[] = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
 ];

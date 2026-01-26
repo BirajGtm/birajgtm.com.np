@@ -1,3 +1,8 @@
+/**
+ * INTERACTIVE TERMINAL (CLI)
+ * A Zsh-style command interface allowing users to query skills, projects, and contact info.
+ * Maps 'help', 'ls', 'skills', and 'projects' commands directly to data in portfolio.json.
+ */
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function InteractiveTerminal({ data }) {
@@ -28,7 +33,10 @@ export default function InteractiveTerminal({ data }) {
       return null;
     },
     skills: () => data.skills.map(s => `• [${s.category}] ${s.items.map(i => i.name).join(', ')}`).join('\n'),
-    projects: () => data.projects.map(p => `• ${p.title}\n  ${p.description}`).join('\n\n'),
+    projects: () => data.projects
+      .filter(p => p.visible !== false)
+      .map(p => `• [${p.category || 'Project'}] ${p.title}\n  ${p.description}`)
+      .join('\n\n'),
     contact: () => `Email: ${data.basics.email}\nPhone: ${data.basics.phone}\nLocation: ${data.basics.location}`,
     cat: (args) => {
       if (!args) return 'cat: missing file operand';
@@ -80,7 +88,7 @@ export default function InteractiveTerminal({ data }) {
 
   return (
     <div 
-      className="bg-slate-900 rounded-xl shadow-2xl border border-slate-800 font-mono text-sm transform transition-all duration-300 hover:scale-[1.01] flex flex-col h-[420px] w-full max-w-2xl overflow-hidden cursor-text"
+      className="bg-slate-900 rounded-xl shadow-2xl border border-slate-800 font-mono text-xs sm:text-sm transform transition-all duration-300 hover:scale-[1.01] flex flex-col h-[300px] sm:h-[420px] w-full max-w-2xl overflow-hidden cursor-text"
       onClick={() => inputRef.current?.focus()}
     >
       {/* Title Bar */}

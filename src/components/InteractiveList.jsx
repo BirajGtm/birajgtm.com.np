@@ -1,3 +1,9 @@
+/**
+ * INTERACTIVE TIMELINE LIST
+ * Renders the Work and Education timelines.
+ * - Displays high-level info (Role, Date, Location) in a sleek list.
+ * - Handles the click-to-expand logic that launches the InfoModal with detailed content.
+ */
 import React, { useState } from 'react';
 import InfoModal from './InfoModal';
 

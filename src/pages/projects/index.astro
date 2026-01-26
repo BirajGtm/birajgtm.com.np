@@ -1,11 +1,19 @@
 ---
+/**
+ * PROJECTS DIRECTORY PAGE
+ * This page serves as the main hub for all technical work.
+ * - Fetches all project entries from the collection.
+ * - Integrates the ProjectsGrid which handles real-time search, sorting, and category logic (IT vs. Coding).
+ */
 import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import ProjectsGrid from "../../components/ProjectsGrid.jsx";
 import { getCollection } from "astro:content";
 
-const projects = await getCollection("projects");
+const projects = (await getCollection("projects")).filter(
+  (p) => p.data.visible !== false,
+);
 
 const pageTitle = "Projects";
 const pageDescription = "A collection of my recent projects and case studies";
@@ -49,6 +57,7 @@ const pageDescription = "A collection of my recent projects and case studies";
             repoUrl: p.data.repoUrl,
             liveUrl: p.data.liveUrl,
             heroImage: p.data.heroImage,
+            category: p.data.category,
           }))}
         />
       </section>

@@ -1,3 +1,9 @@
+/**
+ * INFORMATION MODAL COMPONENT
+ * A universal reusable modal for displaying detailed achievements and descriptions.
+ * - Supports Markdown rendering for project/experience deep-dives.
+ * - Features glassmorphic styling and body-scroll locking for an immersive feel.
+ */
 import React, { useEffect, useMemo } from 'react';
 import { marked } from 'marked';
 

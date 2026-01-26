@@ -3,9 +3,9 @@
     "name": "Biraj Gautam",
     "role": "IT Support Specialist",
     "subRole": "Automation Engineer",
-    "tagline": "Bridging Enterprise Infrastructure & Modern Automation.",
-    "email": "birajgtm@gmail.com",
-    "phone": "437 667 9502",
+    "tagline": "IT Support Specialist with 4+ years of enterprise experience supporting 2,000+ users.",
+    "email": "birajgtm.ca@gmail.com",
+    "phone": "437 837 8855",
     "location": "North York, ON",
     "status": "Open to Work",
     "resumeUrl": "/resume.pdf"
@@ -16,91 +16,212 @@
   ],
   "work": [
     {
-      "company": "Kinectrics",
-      "role": "IT Automation Intern",
-      "detailId": "work-nabil",
-      "date": "Sep 2025 - Present",
-      "location": "Toronto, ON",
-      "description": "Developed an internal Natural Language Query tool to automate data extraction from Excel/CSV, reducing manual reporting time."
+      "company": "AT&T",
+      "role": "Technical Support Specialist",
+      "detailId": "work-att",
+      "date": "Apr 2025 - Present",
+      "location": "Remote / ON",
+      "description": "Providing Tier 1-2 support, managing IT operations, and successfully resolving an average of 140 tickets per month."
     },
     {
       "company": "Nabil Bank Limited",
-      "detailId": "work-nabil",
       "role": "IT Support Specialist",
+      "detailId": "work-nabil",
       "date": "Jul 2019 - Nov 2023",
-      "location": "Kathmandu",
-      "description": "Managed Active Directory, M365, and FortiGate Firewalls for 2,000+ users. Resolved 25-30 tickets daily with 95% first-contact resolution."
+      "location": "Kathmandu, Nepal",
+      "description": "Managed Active Directory, M365, and FortiGate Firewalls for 2,000+ users with a 95%+ first-contact resolution rate."
     }
   ],
   "education": [
     {
       "school": "George Brown College",
-      "detailId": "edu-gbc",
-      "degree": "Post-Grad in Applied AI",
+      "detailId": "edu-gbc-combined",
+      "degree": "Post-Grad: Applied AI & Mobile App Dev",
       "location": "Toronto, ON",
-      "gpa": "3.8",
-      "date": "2025"
+      "date": "2024 - 2025"
     },
     {
-      "school": "George Brown College",
-      "detailId": "edu-gbc",
-      "degree": "Post-Grad in Mobile App Dev",
-      "location": "Toronto, ON",
-      "gpa": "3.9",
-      "date": "2024"
-    },
-    {
-      "school": "JNTU",
-      "detailId": "edu-gbc",
-      "degree": "Bachelors in Computer Science",
-      "location": "Hyderabad, India",
-      "gpa": "3.7",
-      "date": "2018"
+      "school": "JNTUK",
+      "detailId": "edu-jntu",
+      "degree": "B.Tech in Computer Science and Engineering",
+      "location": "",
+      "date": "2014 - 2018"
     }
   ],
-"certs": [
-    { "name": "Microsoft 365 Endpoint Admin", "date": "Jan 2026", "issuer": "Microsoft", "url": "https://learn.microsoft.com/api/credentials/share/..." },
-    { "name": "Azure Fundamentals", "date": "Jan 2026", "issuer": "Microsoft", "url": "#" },
-    { "name": "Fortinet NSE3", "date": "Jan 2026", "issuer": "Fortinet", "url": "#" },
-    { "name": "CompTIA A+", "date": "Nov 2025", "issuer": "CompTIA", "url": "#" },
-    { "name": "CCNA Routing & Switching", "date": "2022", "issuer": "Cisco", "url": "#" }
+  "certs": [
+    { "name": "Microsoft 365: Endpoint Administrator Associate", "date": "Jan 2026", "issuer": "Microsoft", "url": "https://learn.microsoft.com/en-us/users/birajgautam-1606/credentials/e4cd94ed055102f4?ref=https%3A%2F%2Fwww.birajgtm.com.np%2F" },
+    { "name": "Microsoft Certified: Azure Fundamentals", "date": "Jan 2026", "issuer": "Microsoft", "url": "https://learn.microsoft.com/api/credentials/share/en-us/BirajGautam-1606/9BFC333D60120138" },
+    { "name": "CompTIA A+", "date": "Nov 2025", "issuer": "CompTIA", "url": "https://www.credly.com/badges/62899f78-58f2-47d8-9cd0-09065894af78" },
+    { "name": "Training: CCNA Routing & Switching", "date": "2022", "issuer": "Laba Nepal", "url": "https://www.labanepal.com/" },
+    { "name": "Fortinet Associate in Cybersecurity", "date": "Jan 2026", "issuer": "Fortinet", "url": "https://www.credly.com/badges/f035c6e0-a331-4b2f-a3d3-bc1f93a9c8b8" }
   ],
   "skills": [
     {
-      "category": "Infrastructure",
+      "category": "OS & Devices",
       "items": [
-        { "name": "Active Directory", "icon": "microsoft", "level": "expert" },
-        { "name": "Microsoft 365", "icon": "microsoft", "level": "advanced" },
-        { "name": "FortiGate VPN", "icon": "fortinet", "level": "intermediate" },
-        { "name": "VMware ESXi", "icon": "vmware", "level": "intermediate" }
+        { "name": "Windows Server", "level": "advanced", "featured": true },
+        { "name": "Windows 10/11", "level": "expert", "featured": true },
+        { "name": "Linux (RHEL/Ubuntu)", "level": "advanced", "featured": true },
+        { "name": "macOS/iOS", "level": "expert", "featured": false },
+        { "name": "Android & POS", "level": "advanced", "featured": false },
+        { "name": "Laptops/Desktops", "level": "expert", "featured": false }
       ]
     },
     {
-      "category": "Automation & Code",
+      "category": "Networking & Security",
       "items": [
-        { "name": "Python", "icon": "python", "level": "expert" },
-        { "name": "Bash Scripting", "icon": "gnu-bash", "level": "advanced" },
-        { "name": "React", "icon": "react", "level": "intermediate" },
-        { "name": "SQL", "icon": "postgresql", "level": "advanced" }
+        { "name": "TCP/IP, LAN/WAN", "level": "advanced", "featured": true },
+        { "name": "FortiGate Firewalls", "level": "advanced", "featured": true },
+        { "name": "VPN & SSL/TLS", "level": "expert", "featured": true },
+        { "name": "DNS/DHCP", "level": "expert", "featured": false },
+        { "name": "IPS/IDS Concepts", "level": "intermediate", "featured": false },
+        { "name": "EDR/XDR & SNMP", "level": "intermediate", "featured": false },
+        { "name": "IP Addressing", "level": "expert", "featured": false }
       ]
+    },
+    {
+      "category": "Systems & Cloud",
+      "items": [
+        { "name": "Active Directory/GPO", "level": "expert", "featured": true },
+        { "name": "M365 / Entra ID", "level": "expert", "featured": true },
+        { "name": "Microsoft Intune", "level": "advanced", "featured": true },
+        { "name": "Azure (Foundational)", "level": "advanced", "featured": false },
+        { "name": "Microsoft Exchange", "level": "advanced", "featured": false }
+      ]
+    },
+    {
+        "category": "Virtualization & Infra",
+        "items": [
+          { "name": "VMware vSphere/ESXi", "level": "advanced", "featured": true },
+          { "name": "Microsoft Hyper-V", "level": "advanced", "featured": true },
+          { "name": "System Imaging", "level": "expert", "featured": true },
+          { "name": "Data Center Ops", "level": "advanced", "featured": false },
+          { "name": "Hardware Repair", "level": "expert", "featured": false }
+        ]
+    },
+    {
+      "category": "ITSM & Operations",
+      "items": [
+        { "name": "ServiceNow/Jira", "level": "expert", "featured": true },
+        { "name": "ITIL/ITSM Framework", "level": "expert", "featured": true },
+        { "name": "SLA Compliance", "level": "expert", "featured": true },
+        { "name": "ServiceDesk Plus", "level": "expert", "featured": false },
+        { "name": "Zendesk Support", "level": "expert", "featured": false },
+        { "name": "Knowledge Bases", "level": "advanced", "featured": false }
+      ]
+    },
+    {
+      "category": "Automation & Monitoring",
+      "items": [
+        { "name": "Python Automation", "level": "expert", "featured": true },
+        { "name": "Splunk/OpManager", "level": "advanced", "featured": true },
+        { "name": "SQL & Bash Scripting", "level": "advanced", "featured": true },
+        { "name": "JavaScript", "level": "intermediate", "featured": false },
+        { "name": "REST API/JSON", "level": "advanced", "featured": false }
+      ]
+    },
+    {
+        "category": "Tools & Protocols",
+        "items": [
+            { "name": "RDP & SSH", "level": "expert", "featured": false },
+            { "name": "Outlook & TeamViewer", "level": "expert", "featured": false },
+            { "name": "SAML 2.0/SSO", "level": "advanced", "featured": false },
+            { "name": "HTTP/SMTP/POP3", "level": "advanced", "featured": false },
+            { "name": "DocuSign/Adobe", "level": "expert", "featured": false },
+            { "name": "Asset Tracking", "level": "expert", "featured": false }
+        ]
     }
   ],
   "projects": [
     {
-      "title": "Automated Self-Service Support",
-      "description": "Built a Python-based AI tool (AskGeorge+) to reduce Tier-1 helpdesk tickets by providing instant answers.",
-      "tags": ["Python", "LangChain", "ITSM"],
-      "link": "/projects/ask-george",
-      "image": "", 
-      "fallbackIcon": "python"
+      "title": "Smart Parking Detector",
+      "description": "Two-stage computer vision pipeline using CNNs for real-time space occupancy status.",
+      "tags": ["Python", "PyTorch", "Gradio"],
+      "link": "/projects/smart-parking",
+      "fallbackIcon": "code",
+      "category": "Coding",
+      "visible": false,
+      "featured": false
     },
     {
-      "title": "Enterprise Network Hardening",
-      "description": "Configured FortiGate firewalls and granular security policies for web filtering and VPN access across 150+ branches.",
-      "tags": ["Fortinet", "Security", "Networking"],
-      "link": "/projects/network-hardening",
-      "image": "",
-      "fallbackIcon": "shield"
+      "title": "AskGeorge+ AI",
+      "description": "RAG system using LangChain and Google Gemini for automated student support.",
+      "tags": ["Python", "LangChain", "LLM"],
+      "link": "/projects/ask-george",
+      "fallbackIcon": "python",
+      "category": "Coding",
+      "visible": true,
+      "featured": true
+    },
+    {
+      "title": "Book My Seat",
+      "description": "Node.js and PostgreSQL backend for scalable restaurant reservations.",
+      "tags": ["Node.js", "PostgreSQL", "API"],
+      "link": "/projects/book-my-seat",
+      "fallbackIcon": "react",
+      "category": "Coding",
+      "visible": false,
+      "featured": false
+    },
+    {
+      "title": "Bhansa Ghar",
+      "description": "Full-stack food delivery platform using MongoDB and Docker containerization.",
+      "tags": ["MongoDB", "Docker", "Node.js"],
+      "link": "/projects/bhansa-ghar",
+      "fallbackIcon": "code",
+      "category": "Coding",
+      "visible": false,
+      "featured": false
+    },
+    {
+      "title": "ITSM Implementation",
+      "description": "Engineered ServiceDesk Plus & OpManager with SAML 2.0 Azure SSO integration.",
+      "tags": ["ITSM", "Azure AD", "SSO"],
+      "link": "/projects/itsm-implementation",
+      "fallbackIcon": "shield",
+      "category": "IT",
+      "visible": true,
+      "featured": true
+    },
+    {
+      "title": "FortiGate Refresh",
+      "description": "Firewall infrastructure upgrade across DC and 30+ branches with zero downtime.",
+      "tags": ["Fortinet", "VPN", "Security"],
+      "link": "/projects/fortigate-refresh",
+      "fallbackIcon": "shield",
+      "category": "IT",
+      "visible": true,
+      "featured": true
+    },
+    {
+      "title": "Vendor Selection Committee",
+      "description": "Technical analyst for nabilbank.com architecture and security evaluation.",
+      "tags": ["Analysis", "Security", "Strategy"],
+      "link": "/projects/website-selection",
+      "fallbackIcon": "code",
+      "category": "IT",
+      "visible": true,
+      "featured": false
+    },
+    {
+      "title": "Win10 Enterprise Rollout",
+      "description": "Standardized deployment of 200+ devices with custom ISO and hardware upgrades.",
+      "tags": ["Deployment", "Windows 10", "Imaging"],
+      "link": "/projects/win10-refresh",
+      "fallbackIcon": "shield",
+      "category": "IT",
+      "visible": true,
+      "featured": false
+    },
+    {
+      "title": "My Portfolio Architecture",
+      "description": "Hybrid IT portfolio built using Astro, React, and Tailwind CSS.",
+      "tags": ["Astro", "React", "Tailwind"],
+      "link": "/projects/my-portfolio",
+      "fallbackIcon": "react",
+      "category": "Coding",
+      "visible": true,
+      "featured": false
     }
   ]
 }

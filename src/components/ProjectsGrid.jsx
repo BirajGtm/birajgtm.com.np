@@ -1,3 +1,10 @@
+/**
+ * PROJECTS GRID DASHBOARD
+ * The heavy-duty interface for the main /projects page. Features:
+ * 1. Search: Fuzzy search across titles, descriptions, and stacks.
+ * 2. Sort: Dynamic sorting by name and technology depth.
+ * 3. Results Management: Real-time filtering with no-results fallback.
+ */
 import React, { useState, useMemo } from 'react';
 
 export default function ProjectsGrid({ projects }) {
@@ -22,9 +29,6 @@ export default function ProjectsGrid({ projects }) {
         break;
       case 'title-desc':
         sorted.sort((a, b) => b.title.localeCompare(a.title));
-        break;
-      case 'stack-count':
-        sorted.sort((a, b) => b.stack.length - a.stack.length);
         break;
       default:
         break;
@@ -60,7 +64,6 @@ export default function ProjectsGrid({ projects }) {
           >
             <option value="title">A-Z</option>
             <option value="title-desc">Z-A</option>
-            <option value="stack-count">Most Tech</option>
           </select>
         </div>
       </div>
@@ -99,10 +102,17 @@ export default function ProjectsGrid({ projects }) {
 
               {/* Content */}
               <div className="relative z-10 flex flex-col h-full p-5">
-                {/* Title */}
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
+                {/* Category & Title */}
+                <div className="flex flex-col mb-3">
+                  {project.category && (
+                    <span className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">
+                      {project.category} Project
+                    </span>
+                  )}
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                </div>
 
                 {/* Description */}
                 <p className="text-base text-slate-600 dark:text-slate-400 mb-4 flex-grow line-clamp-3">

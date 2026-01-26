@@ -1,3 +1,10 @@
+/**
+ * BLOG GRID DASHBOARD
+ * Powers the main /blog index. Features:
+ * 1. Search Bar: Instant filtering by post titles and descriptions.
+ * 2. Tag Filter: Dynamic categorization by article tags.
+ * 3. Feature Post: Automatically highlights the latest post with a larger layout.
+ */
 import React, { useState, useMemo } from 'react';
 
 export default function BlogGrid({ posts }) {

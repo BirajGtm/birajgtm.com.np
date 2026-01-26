@@ -1,5 +1,12 @@
 ---
-import type { CollectionEntry } from "astro:content";
+/**
+ * PROJECT DETAIL LAYOUT
+ * The 'Case Study' template for single project pages. Functions:
+ * 1. Dynamic Meta: Generates SEO tags and Article schema for each project.
+ * 2. Sidebar Stats: Renders the Role, Timeline, and Tech Stack badges.
+ * 3. Smart Suggestions: Fetches 2 similar projects in the same category for post-read navigation.
+ */
+import { type CollectionEntry, getCollection } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -16,276 +23,228 @@ const {
   liveUrl,
   role,
   timeline,
+  category,
 } = Astro.props;
+
+// Fetch suggested projects (same category, excluding current, limit to 3)
+const allProjects = await getCollection("projects");
+const suggestedProjects = allProjects
+  .filter(
+    (p) =>
+      p.data.category === category &&
+      p.data.title !== title &&
+      p.data.visible !== false,
+  )
+  .slice(0, 2);
 ---
 
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
-    <style>
-      main {
-        width: calc(100% - 2em);
-        max-width: 100%;
-        margin: 0;
-      }
-      .project-container {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2em 1em;
-      }
-      @media (min-width: 768px) {
-        .project-container {
-          grid-template-columns: 300px 1fr;
-        }
-      }
-      .hero-image {
-        width: 100%;
-        margin-bottom: 2rem;
-      }
-      .hero-image img {
-        display: block;
-        margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: var(--box-shadow);
-        width: 100%;
-        height: auto;
-      }
-      .dynamic-card {
-        width: 100%;
-        height: 300px;
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 1rem;
-        box-shadow: var(--box-shadow);
-      }
-      .dynamic-card-icon {
-        font-size: 4rem;
-        color: #333;
-      }
-      .sidebar {
-        background: #f9f9f9;
-        padding: 1.5rem;
-        border-radius: 8px;
-        height: fit-content;
-        position: sticky;
-        top: 2rem;
-      }
-      .sidebar-item {
-        margin-bottom: 1.5rem;
-      }
-      .sidebar-label {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 0.5rem;
-        color: #555;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-      .sidebar-value {
-        font-size: 1rem;
-        color: #222;
-      }
-      .stack-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-      .stack-tag {
-        background: #e0e0e0;
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
-        font-size: 0.85rem;
-      }
-      .project-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .btn {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        background: #333;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 4px;
-        text-align: center;
-        transition: background 0.2s;
-      }
-      .btn:hover {
-        background: #555;
-      }
-      .btn-outline {
-        background: transparent;
-        border: 1px solid #333;
-        color: #333;
-      }
-      .btn-outline:hover {
-        background: #333;
-        color: #fff;
-      }
-      .prose {
-        max-width: 100%;
-        color: rgb(var(--gray-dark));
-      }
-      .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        line-height: 1;
-      }
-      .title h1 {
-        margin: 0 0 0.5em 0;
-        font-size: 2.5rem;
-      }
-      .related-content {
-        margin-top: 4rem;
-        padding-top: 2rem;
-        border-top: 1px solid #eee;
-      }
-      .related-content h3 {
-        margin-bottom: 1rem;
-      }
-      .related-links {
-        list-style: none;
-        padding: 0;
-      }
-      .related-links li {
-        margin-bottom: 0.5rem;
-      }
-      .related-links a {
-        color: #333;
-        text-decoration: none;
-      }
-      .related-links a:hover {
-        text-decoration: underline;
-      }
-    </style>
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "SoftwareSourceCode",
-        name: title,
-        description: description,
-        programmingLanguage: stack,
-        author: {
-          "@type": "Person",
-          name: "Biraj Gautam",
-        },
-        codeRepository: repoUrl,
-      })}
-    />
   </head>
 
-  <body>
+  <body class="bg-white dark:bg-darkBg transition-colors duration-300">
     <Header />
-    <main>
-      <div class="project-container">
-        <aside class="sidebar">
+
+    <main class="max-w-6xl mx-auto px-4 pt-32 pb-20">
+      <div class="grid lg:grid-cols-[300px_1fr] gap-12 items-start">
+        {/* SIDEBAR */}
+        <aside
+          class="order-2 lg:order-1 sticky top-32 space-y-8 bg-slate-50 dark:bg-slate-900/50 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 backdrop-blur-sm shadow-sm"
+        >
           {
             role && (
-              <div class="sidebar-item">
-                <span class="sidebar-label">Role</span>
-                <div class="sidebar-value">{role}</div>
+              <div class="space-y-1">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                  My Role
+                </span>
+                <p class="text-slate-900 dark:text-white font-semibold">
+                  {role}
+                </p>
               </div>
             )
           }
+
           {
             timeline && (
-              <div class="sidebar-item">
-                <span class="sidebar-label">Timeline</span>
-                <div class="sidebar-value">{timeline}</div>
+              <div class="space-y-1">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                  Timeline
+                </span>
+                <p class="text-slate-900 dark:text-white font-semibold font-mono text-sm">
+                  {timeline}
+                </p>
               </div>
             )
           }
-          <div class="sidebar-item">
-            <span class="sidebar-label">Tech Stack</span>
-            <div class="stack-tags">
+
+          <div class="space-y-3">
+            <span
+              class="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500"
+              >Tech Stack</span
+            >
+            <div class="flex flex-wrap gap-2">
               {
                 stack.map((tech: string) => (
-                  <span class="stack-tag">{tech}</span>
+                  <span class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 rounded-lg shadow-sm">
+                    {tech}
+                  </span>
                 ))
               }
             </div>
           </div>
+
           {
             (repoUrl || liveUrl) && (
-              <div class="sidebar-item">
-                <span class="sidebar-label">Links</span>
-                <div class="project-links">
-                  {liveUrl && (
-                    <a href={liveUrl} target="_blank" class="btn">
-                      View Live
-                    </a>
-                  )}
-                  {repoUrl && (
-                    <a href={repoUrl} target="_blank" class="btn btn-outline">
-                      View Code
-                    </a>
-                  )}
-                </div>
+              <div class="pt-4 flex flex-col gap-3">
+                {liveUrl && (
+                  <a
+                    href={liveUrl}
+                    target="_blank"
+                    class="w-full text-center px-6 py-3 bg-primary text-white rounded-xl font-bold text-sm hover:bg-blue-600 transition-all shadow-lg shadow-blue-500/20 active:scale-95"
+                  >
+                    View Live Site ↗
+                  </a>
+                )}
+                {repoUrl && (
+                  <a
+                    href={repoUrl}
+                    target="_blank"
+                    class="w-full text-center px-6 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-all active:scale-95"
+                  >
+                    View Code Source
+                  </a>
+                )}
               </div>
             )
           }
         </aside>
 
-        <article>
-          <div class="hero-image">
+        {/* CONTENT AREA */}
+        <article class="order-1 lg:order-2 space-y-12">
+          {/* HERO IMAGE */}
+          <div
+            class="relative group rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900"
+          >
             {
               heroImage ? (
-                <Image width={1020} height={510} src={heroImage} alt="" />
+                <Image
+                  width={1020}
+                  height={510}
+                  src={heroImage}
+                  alt={title}
+                  class="w-full h-auto"
+                />
               ) : (
-                <div class="dynamic-card">
-                  <div class="dynamic-card-icon">🚀</div>
-                  <h3>{title}</h3>
+                <div class="aspect-video flex flex-col items-center justify-center p-12 bg-gradient-to-br from-slate-50 to-slate-200 dark:from-slate-800 dark:to-slate-900">
+                  <span class="text-8xl mb-4">🚀</span>
+                  <h3 class="text-2xl font-black text-slate-400 dark:text-slate-600 uppercase tracking-tighter">
+                    {title}
+                  </h3>
                 </div>
               )
             }
           </div>
-          <div class="prose">
-            <div class="title">
-              <h1>{title}</h1>
-              <p>{description}</p>
-              <hr />
-            </div>
-            <slot />
 
-            <div class="related-content">
-              <h3>Related Blog Posts</h3>
-              <ul class="related-links">
-                {
-                  /* Placeholder for related content logic - would typically filter blog posts by matching tags */
-                }
-                <li>
-                  <a href="/blog">Check out my latest blog posts</a>
-                </li>
-              </ul>
+          {/* TEXT CONTENT */}
+          <div
+            class="prose prose-slate dark:prose-invert max-w-none
+            prose-headings:text-slate-900 dark:prose-headings:text-white
+            prose-h1:text-4xl lg:prose-h1:text-5xl prose-h1:font-black prose-h1:tracking-tight
+            prose-p:text-lg prose-p:leading-relaxed prose-p:text-slate-600 dark:prose-p:text-slate-400
+            prose-strong:text-primary dark:prose-strong:text-blue-400
+            prose-hr:border-slate-200 dark:prose-hr:border-slate-800"
+          >
+            <header class="not-prose mb-12">
+              <h1
+                class="text-4xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight mb-4"
+              >
+                {title}
+              </h1>
+              <p class="text-xl text-slate-500 dark:text-slate-400 font-medium">
+                {description}
+              </p>
+              <div class="h-1 w-20 bg-primary mt-8 rounded-full"></div>
+            </header>
+
+            <div class="content-body">
+              <slot />
             </div>
 
-            <div
-              class="comments-section"
-              style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eee;"
-            >
-              <h3>Comments</h3>
-              <div class="commentbox"></div>
-              <script
-                src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"
-              ></script>
-              <script>
-                window.commentBox("5701842210127872-proj");
-              </script>
-            </div>
+            {/* SUGGESTED PROJECTS SECTION */}
+            {
+              suggestedProjects.length > 0 && (
+                <div class="mt-24 pt-12 border-t border-slate-200 dark:border-slate-800">
+                  <div class="flex items-center justify-between mb-8">
+                    <div>
+                      <h3 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                        Suggested Projects
+                      </h3>
+                      <p class="text-sm text-slate-500 dark:text-slate-400">
+                        Other {category} projects you might be interested in
+                      </p>
+                    </div>
+                    <a
+                      href="/projects"
+                      class="text-primary font-bold hover:underline flex items-center gap-1 group"
+                    >
+                      See All Projects
+                      <span class="group-hover:translate-x-1 transition-transform">
+                        →
+                      </span>
+                    </a>
+                  </div>
+
+                  <div class="grid sm:grid-cols-2 gap-6">
+                    {suggestedProjects.map((p) => (
+                      <a
+                        href={`/projects/${p.id.replace(/\.md$/, "")}`}
+                        class="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-primary/50 transition-all shadow-sm overflow-hidden text-decoration-none"
+                      >
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-3xl -mr-4 -mt-4 group-hover:bg-primary/10 transition-colors" />
+                        <div class="relative z-10 flex flex-col h-full">
+                          <div class="text-[10px] font-black uppercase tracking-widest text-primary mb-2">
+                            Next Read
+                          </div>
+                          <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+                            {p.data.title}
+                          </h4>
+                          <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                            {p.data.description}
+                          </p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )
+            }
           </div>
         </article>
       </div>
     </main>
+
     <Footer />
+
+    <style is:global>
+      @reference "../styles/global.css";
+
+      /* Custom styles for rendered markdown content specifically within project pages */
+      .content-body h2 {
+        @apply text-2xl font-bold text-slate-900 dark:text-white mt-12 mb-6 flex items-center gap-2;
+      }
+      .content-body p {
+        @apply my-6 text-slate-600 dark:text-slate-400 leading-relaxed;
+      }
+      .content-body ul {
+        @apply list-disc list-outside pl-6 space-y-3 my-6 text-slate-600 dark:text-slate-400;
+      }
+      .content-body li {
+        @apply marker:text-primary;
+      }
+      .content-body code {
+        @apply px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-primary dark:text-blue-400 font-mono text-sm;
+      }
+    </style>
   </body>
 </html>

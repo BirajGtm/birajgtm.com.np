@@ -1,4 +1,11 @@
 ---
+/**
+ * HOMEPAGE ASSEMBLY
+ * This is the main entry point of the site. It handles:
+ * 1. Hybrid Data Fetching: Combines portfolio.json data with Astro Content Collections.
+ * 2. Specialized Filtering: Separates 'Featured' skills and 'Featured' projects for a clean grid layout.
+ * 3. Component Orchestration: Integrates the Interactive Terminal, Skills Manager, and Timeline sections.
+ */
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -7,6 +14,7 @@ import InteractiveList from '../components/InteractiveList.jsx';
 import InteractiveTerminal from '../components/InteractiveTerminal.jsx';
 import data from '../data/portfolio.json';
 import details from '../data/details.json';
+import SkillsManager from '../components/SkillsManager.jsx';
 import { getCollection } from 'astro:content';
 
 // Fetch Blog Posts (Sort by newest)
@@ -14,8 +22,10 @@ const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 ).slice(0, 3);
 
-// Fetch Projects (Same approach as blog)
-const projects = await getCollection('projects');
+// Fetch Projects (Filter by visibility & featured, limit to 3)
+const projects = (await getCollection('projects'))
+	.filter(p => p.data.visible !== false && p.data.featured === true)
+	.slice(0, 3);
 
 // Attach HTML content to work/education items
 function enhanceData(items: any[]) {
@@ -35,6 +45,14 @@ function enhanceData(items: any[]) {
 
 const enhancedWork = enhanceData(data.work);
 const enhancedEducation = enhanceData(data.education);
+
+// Filter skills for the featured grid (only show categories that have featured items)
+const featuredSkills = data.skills
+	.map(cat => ({
+		...cat,
+		items: cat.items.filter(i => i.featured)
+	}))
+	.filter(cat => cat.items.length > 0);
 ---
 
 <!doctype html>
@@ -81,7 +99,7 @@ const enhancedEducation = enhanceData(data.education);
 						</div>
 					</div>
 					<!-- Terminal Graphic (Interactive) -->
-					<div class="hidden md:flex justify-center items-center">
+					<div class="flex justify-center items-center mt-8 lg:mt-0">
 						<InteractiveTerminal client:load data={data} />
 					</div>
 				</div>
@@ -92,28 +110,55 @@ const enhancedEducation = enhanceData(data.education);
 			     ========================================= -->
 			<section id="skills" class="bg-slate-50 dark:bg-slate-800/50 border-y border-slate-200 dark:border-slate-800">
 				<div class="max-w-5xl mx-auto px-4 py-16">
-					<h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-8">Technical Competencies</h3>
-					<div class="grid md:grid-cols-2 gap-8">
-						{data.skills.map((category) => (
-							<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
-								<h4 class="text-lg font-semibold mb-4 text-slate-900 dark:text-white flex items-center gap-2">
-									{category.category === "Infrastructure" ? "🏢" : "⚡"} {category.category}
+					<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3">
+						<span class="text-primary">⚙️</span> Technical Competencies
+					</h2>
+					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{featuredSkills.map((category) => (
+							<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group/cat">
+								{/* Subtle category decoration */}
+								<div class="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full -mr-4 -mt-4 group-hover/cat:bg-primary/10 transition-colors"></div>
+
+								<h4 class="text-lg font-semibold mb-6 text-slate-900 dark:text-white flex items-center gap-2 relative z-10">
+									{category.category === "OS & Devices" ? "💻" : 
+									 category.category === "Networking & Security" ? "🔒" :
+									 category.category === "Systems & Cloud" ? "☁️" :
+									 category.category === "Virtualization & Infra" ? "🗄️" :
+									 category.category === "ITSM & Operations" ? "🛠️" :
+									 category.category === "Automation & Monitoring" ? "🤖" : "⚡"} {category.category}
 								</h4>
-								<div class="grid grid-cols-2 gap-3">
+								<div class="space-y-4 relative z-10">
 									{category.items.map((skill) => (
-										<div class="group/skill flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/30 hover:bg-white dark:hover:bg-slate-800 hover:shadow-md transition-all duration-300">
-											<div class="w-8 h-8 flex items-center justify-center rounded-lg bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700 group-hover/skill:border-primary/20 transition-colors shadow-sm text-lg">
-												{skill.name === "Active Directory" || skill.name === "Microsoft 365" ? "🗄️" : 
-												 skill.name === "FortiGate VPN" ? "🛡️" : 
-												 skill.name === "VMware ESXi" ? "☁️" :
-												 skill.name === "Python" ? "🐍" :
-												 skill.name === "Bash Scripting" ? "⌨️" :
-												 skill.name === "React" ? "⚛️" :
-												 skill.name === "SQL" ? "📊" : "⚡"}
+										<div class="flex items-center gap-3">
+											<div class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 transition-colors shadow-sm text-lg flex-shrink-0">
+												{skill.name.includes("Windows") || skill.name.includes("Server") ? "🪟" : 
+												 skill.name.includes("macOS") ? "🍎" : 
+												 skill.name.includes("Linux") ? "🐧" :
+												 skill.name.includes("FortiGate") ? "🛡️" :
+												 skill.name.includes("Azure") || skill.name.includes("Intune") ? "☁️" :
+												 skill.name.includes("VMware") ? "💾" :
+												 skill.name.includes("ServiceNow") || skill.name.includes("Jira") ? "📂" :
+												 skill.name.includes("Python") ? "🐍" :
+												 skill.name.includes("Bash") || skill.name.includes("SQL") ? "⌨️" :
+												 skill.name.includes("JavaScript") || skill.name.includes("React") ? "⚛️" : "⚡"}
 											</div>
-											<div class="flex flex-col">
-												<span class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-tight leading-none mb-1">{skill.level}</span>
-												<span class="text-sm font-semibold text-slate-700 dark:text-slate-200 leading-none">{skill.name}</span>
+											<div class="flex-grow min-w-0">
+												<div class="flex flex-col">
+													<span class="text-sm font-semibold text-slate-700 dark:text-slate-200 leading-none mb-2 truncate">{skill.name}</span>
+													<div class="w-full max-w-[140px] h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden border-2 border-slate-300 dark:border-slate-600 shadow-inner">
+														{(() => {
+															const percent = skill.level.toLowerCase() === 'expert' ? '100%' : 
+																			skill.level.toLowerCase() === 'advanced' ? '75%' : 
+																			skill.level.toLowerCase() === 'intermediate' ? '50%' : '25%';
+															return (
+																<div 
+																	class="h-full bg-emerald-500 rounded-full transition-all duration-1000 shadow-[0_0_8px_rgba(16,185,129,0.3)]" 
+																	style={`width: ${percent}`}
+																></div>
+															);
+														})()}
+													</div>
+												</div>
 											</div>
 										</div>
 									))}
@@ -121,6 +166,8 @@ const enhancedEducation = enhanceData(data.education);
 							</div>
 						))}
 					</div>
+
+					<SkillsManager client:load allSkills={data.skills} />
 				</div>
 			</section>
 
@@ -214,7 +261,8 @@ const enhancedEducation = enhanceData(data.education);
 								tags={project.data.stack}
 								link={`/projects/${project.id.replace(/\.md$/, '')}`}
 								image={project.data.heroImage}
-								fallbackIcon={project.data.stack?.[0]?.toLowerCase() || 'code'}
+								fallbackIcon={project.data.category === 'IT' ? 'shield' : (project.data.stack?.[0]?.toLowerCase() === 'python' ? 'python' : 'code')}
+								category={project.data.category}
 							/>
 						))}
 					</div>
@@ -226,7 +274,7 @@ const enhancedEducation = enhanceData(data.education);
 			     ========================================= -->
 			<section id="blog" class="max-w-5xl mx-auto px-4 py-20">
 				<div class="flex items-center justify-between mb-8">
-					<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Latest Documentation</h2>
+					<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Latest Blog Posts</h2>
 					<a href="/blog" class="text-primary hover:underline">Read Blog →</a>
 				</div>
 				<div class="grid md:grid-cols-3 gap-6">

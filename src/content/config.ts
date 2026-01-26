@@ -1,3 +1,11 @@
+/**
+ * CONTENT SCHEMA CONFIGURATION
+ * Defines the data structure (Zod validation) for all Blog and Project entries.
+ * Crucial Fields:
+ * - 'visible': Hides items site-wide if false.
+ * - 'featured': Promotes items to the homepage if true.
+ * - 'category': Drives automated routing and suggestions (Coding vs. IT).
+ */
 import { defineCollection, z } from 'astro:content';
 
 const blog = defineCollection({
@@ -25,6 +33,9 @@ const projects = defineCollection({
         liveUrl: z.string().optional(),
         role: z.string().optional(),
         timeline: z.string().optional(),
+        visible: z.boolean().default(true),
+        featured: z.boolean().default(false),
+        category: z.string().optional(), // "Coding" or "IT"
     })
 });
 

@@ -1,31 +1,17 @@
 ---
-title: "Ask George"
-description: "A conversational AI chatbot designed to help students with their academic queries using natural language processing and machine learning. A conversational AI chatbot designed to help students with their academic queries using natural language processing and machine learning. A conversational AI chatbot designed to help students with their academic queries using natural language processing and machine learning."
-stack: ["Python", "React", "Node.js", "PostgreSQL"]
-
+title: "AskGeorge+ (AI Student Support Assistant)"
+description: "RAG-based AI assistant using LangChain and Google Gemini to provide student support."
+stack: ["Python", "LangChain", "Google Gemini", "Flask", "Scrapy"]
+category: "Coding"
+visible: true
+featured: true
 ---
 
-## Overview
+Architected a complete Retrieval-Augmented Generation (RAG) system using LangChain to provide accurate answers from a knowledge base.
 
-A conversational AI chatbot designed to help students with their academic queries using natural language processing and machine learning.
+## Key Features
 
-## Features
-
-- 🤖 **NLP-powered responses** using OpenAI's GPT API
-- 💬 **Real-time chat interface** with React
-- 📚 **Knowledge base** indexed with vector embeddings
-- 🔐 **User authentication** and conversation history
-- 📱 **Responsive design** for mobile and desktop
-
-## Tech Stack
-
-- **Frontend**: React, TypeScript, Tailwind CSS
-- **Backend**: Node.js, Express, PostgreSQL
-- **AI**: OpenAI API, LangChain
-- **Deployment**: Vercel, Railway
-
-## Results
-
-- Achieved **95% query resolution rate**
-- **2000+** active users in beta
-- **4.8/5** average satisfaction rating
+- **RAG Architecture**: Full Retrieval-Augmented Generation implementation with LangChain.
+- **Automated Data Pipeline**: Developed using Scrapy and pdfplumber to ingest and process institutional information.
+- **LLM Integration**: Integrated Google Gemini LLM via REST API for intelligent responses.
+- **Web UI**: Built a clean, user-friendly interface with Flask for instant student access.

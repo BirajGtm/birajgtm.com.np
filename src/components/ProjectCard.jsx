@@ -1,6 +1,12 @@
+/**
+ * PROJECT CARD COMPONENT
+ * The visual building block used for 'Featured Projects' on the homepage.
+ * - Renders titles, descriptions, and tech stacks.
+ * - Includes a custom fallback emoji system for projects without hero images.
+ */
 import React from 'react';
 
-export default function ProjectCard({ title, description, tags, link, image, fallbackIcon }) {
+export default function ProjectCard({ title, description, tags, link, image, fallbackIcon, category }) {
   return (
     <a href={link} className="group relative flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:border-primary/40 transition-all duration-500 hover:-translate-y-2">
       
@@ -33,9 +39,17 @@ export default function ProjectCard({ title, description, tags, link, image, fal
       <div className="p-8 flex flex-col flex-1 relative z-20">
         <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-12 -mt-12 blur-2xl group-hover:bg-primary/10 transition-colors"></div>
         
-        <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-3 group-hover:text-primary transition-colors tracking-tight">
-            {title}
-        </h3>
+        <div className="flex flex-col mb-3">
+          {category && (
+            <span className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">
+              {category} Project
+            </span>
+          )}
+          <h3 className="text-2xl font-black text-slate-900 dark:text-white group-hover:text-primary transition-colors tracking-tight">
+              {title}
+          </h3>
+        </div>
+        
         <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-6 line-clamp-3">
             {description}
         </p>
