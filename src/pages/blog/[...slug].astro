@@ -1,10 +1,4 @@
 ---
-/**
- * DYNAMIC BLOG ROUTE
- * This file acts as a template-machine for all blog posts.
- * It uses 'getStaticPaths' to generate a unique URL (slug) for every Markdown file in 'src/content/blog'.
- * When a user visits '/blog/slug', Astro renders the matching post using the BlogPost layout.
- */
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
 

@@ -16,11 +16,10 @@ import data from '../data/portfolio.json';
 import details from '../data/details.json';
 import SkillsManager from '../components/SkillsManager.jsx';
 import { getCollection } from 'astro:content';
+import { getAllPosts } from '../lib/blog';
 
-// Fetch Blog Posts (Sort by newest)
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-).slice(0, 3);
+// Fetch Blog Posts (Sort by newest, combined local and Dev.to)
+const posts = (await getAllPosts()).slice(0, 3);
 
 // Fetch Projects (Filter by visibility & featured, limit to 3)
 const projects = (await getCollection('projects'))
@@ -279,7 +278,10 @@ const featuredSkills = data.skills
 				</div>
 				<div class="grid md:grid-cols-3 gap-6">
 					{posts.map((post) => (
-						<a href={`/blog/${post.id.replace(/\.md$/, '')}/`} class="group relative flex flex-col h-full bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-2xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+						<a 
+							href={post.isExternal ? `/blog/devto/${post.slug}/` : `/blog/${post.id}/`} 
+							class="group relative flex flex-col h-full bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 hover:shadow-2xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+						>
 							
 							<!-- 1. Gradient Overlay (Appears on Hover) -->
 							<div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -287,23 +289,26 @@ const featuredSkills = data.skills
 							<!-- 2. Header: Date & Icon -->
 							<div class="relative flex items-center justify-between mb-4 z-10">
 								<span class="text-xs font-mono font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 group-hover:border-primary/30 transition-colors">
-									{post.data.pubDate.toLocaleDateString()}
+									{post.pubDate.toLocaleDateString()}
 								</span>
 								
-								<!-- Document Icon -->
-								<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
-									<polyline points="14 2 14 8 20 8"/>
-								</svg>
+								{post.isExternal ? (
+									<span class="text-xs font-bold text-primary bg-primary/5 px-2 py-1 rounded">Dev.to</span>
+								) : (
+									<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+										<polyline points="14 2 14 8 20 8"/>
+									</svg>
+								)}
 							</div>
 
 							<!-- 3. Content -->
 							<div class="relative flex-grow z-10">
 								<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary transition-colors leading-tight">
-									{post.data.title}
+									{post.title}
 								</h3>
 								<p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed mb-6">
-									{post.data.description}
+									{post.description}
 								</p>
 							</div>
 
