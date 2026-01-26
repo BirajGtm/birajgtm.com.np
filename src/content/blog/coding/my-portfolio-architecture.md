@@ -3,7 +3,7 @@ title: "Building a Hybrid Portfolio: Behind the Architecture"
 description: "A deep dive into how I built this site using Astro, React, and a hybrid JSON/Markdown data system for enterprise-grade scalability."
 pubDate: "Jan 26 2026"
 tags: ["Architecture", "Astro", "React", "Portfolio"]
-heroImage: "https://github.com/BirajGtm/birajgtm.com.np/blob/main/src/assets/blog-placeholder-2.jpg"
+heroImage: "https://raw.githubusercontent.com/BirajGtm/birajgtm.com.np/refs/heads/main/src/assets/blog-placeholder-2.jpg"
 ---
 
 Welcome to the technical breakdown of my portfolio! Most personal sites are either static landing pages or overly complex apps. For this project, I wanted to find the "Goldilocks Zone": a site that is lightning-fast, easy to update, and showcases both my **IT Operations** and **Software Engineering** skills.
