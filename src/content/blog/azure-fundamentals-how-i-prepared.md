@@ -1,11 +1,11 @@
 ---
-title: "How I Prepared for Azure Fundamentals (AZ-900) — What Actually Helped Me"
+title: "How I Prepared for Azure Fundamentals (AZ-900) - What Actually Helped Me"
 description: "A practical guide sharing my experience preparing for the AZ-900 exam, focusing on scenario-based learning, core services, Azure management, and discounts for students."
 pubDate: "Jan 26 2026"
 tags: ["Azure", "Cloud Computing", "AZ-900", "Exam Prep"]
 ---
 
-Preparing for **Azure Fundamentals (AZ-900)** can feel straightforward at first — the concepts in the syllabus are easy to read and understand. However, the exam tests your ability to apply those concepts in **real-world scenarios**, which is where most candidates struggle.
+Preparing for **Azure Fundamentals (AZ-900)** can feel straightforward at first - the concepts in the syllabus are easy to read and understand. However, the exam tests your ability to apply those concepts in **real-world scenarios**, which is where most candidates struggle.
 
 For example:
 
@@ -16,7 +16,7 @@ You need **practical understanding**, not just definitions.
 
 ---
 
-## 1. Understand Core Azure Services — Deeply
+## 1. Understand Core Azure Services - Deeply
 
 Scenario-based questions come from **core services**, so you should know them thoroughly:
 
@@ -30,9 +30,9 @@ Scenario-based questions come from **core services**, so you should know them th
 
 ---
 
-## 2. Azure Management and Governance — What You Actually Need
+## 2. Azure Management and Governance - What You Actually Need
 
-This topic is more than just definitions — the exam tests your understanding of **how Azure organizes and manages resources**.
+This topic is more than just definitions - the exam tests your understanding of **how Azure organizes and manages resources**.
 
 ### Key Areas:
 
@@ -75,13 +75,13 @@ I personally combined **Microsoft Learn for structured learning** with **MSFTHub
 
 ---
 
-## 4. Practice Tests — After Core Understanding
+## 4. Practice Tests - After Core Understanding
 
 I consistently scored **80–85% on Microsoft Learn practice assessments**, but in the **real exam I got 718**, which shows how important it is to understand **core services and management/governance in practical scenarios**, not just memorize facts. Using hands-on labs helped me bridge that gap.
 
 ---
 
-## 5. Real Exam Discounts — My Experience
+## 5. Real Exam Discounts - My Experience
 
 When I added my **school account** in Microsoft Learn under **Account Settings → Login Account Management**, I was able to **get a discount when checking out for the exam**. This is how I personally got 50% off.
 
@@ -93,7 +93,7 @@ When I added my **school account** in Microsoft Learn under **Account Settings �
 
 1. Complete **Microsoft Learn AZ-900 modules**  
 2. Use **AI tools (e.g., ChatGPT)** to summarize and explain confusing topics  
-3. Hands-on practice in **Azure free account** — storage replication, networking, governance tools  
+3. Hands-on practice in **Azure free account** - storage replication, networking, governance tools  
 4. **Practice assessments** on Microsoft Learn + lab exercises from MSFTHub  
 5. Schedule the exam using the **school account discount**
 
@@ -101,4 +101,4 @@ When I added my **school account** in Microsoft Learn under **Account Settings �
 
 ## Final Thoughts
 
-AZ‑900 may seem straightforward conceptually, but **scenario-based questions in core services and governance are tricky**. Hands-on experience, structured learning from Microsoft Learn, and lab exercises from certs.msfthub.wiki made the difference for me — and that’s what should form the foundation of any good AZ‑900 study plan.
+AZ‑900 may seem straightforward conceptually, but **scenario-based questions in core services and governance are tricky**. Hands-on experience, structured learning from Microsoft Learn, and lab exercises from certs.msfthub.wiki made the difference for me - and that’s what should form the foundation of any good AZ‑900 study plan.
