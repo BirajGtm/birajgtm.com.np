@@ -16,10 +16,18 @@
   ],
   "work": [
     {
+      "company": "QBuild",
+      "role": "IT Support Technician",
+      "detailId": "work-qbuild",
+      "date": "Mar 2026 - Present",
+      "location": "Markham",
+      "description": "End-user troubleshooting, system maintenance, and network support to ensure reliable IT operations."
+    },
+    {
       "company": "AT&T",
       "role": "Technical Support Specialist",
       "detailId": "work-att",
-      "date": "Apr 2025 - Present",
+      "date": "Apr 2025 - Feb 2026",
       "location": "Remote / ON",
       "description": "Providing Tier 1-2 support, managing IT operations, and successfully resolving an average of 140 tickets per month."
     },
