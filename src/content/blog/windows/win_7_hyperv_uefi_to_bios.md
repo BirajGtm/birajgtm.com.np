@@ -1,6 +1,9 @@
 ---
-
-## title: "How to Run Windows 7 on Hyper-V from a Modern UEFI System" description: "A complete guide to converting a Windows 7 installation from UEFI/GPT to BIOS/MBR so it can successfully boot inside a Hyper-V Generation 1 virtual machine." pubDate: "Mar 30 2026" tags: ["Windows 7", "Hyper-V", "Virtualization", "Sysadmin"]
+title: "How to Run Windows 7 on Hyper-V from a Modern UEFI System"
+description: "A complete guide to converting a Windows 7 installation from UEFI/GPT to BIOS/MBR so it can successfully boot inside a Hyper-V Generation 1 virtual machine."
+pubDate: "Mar 30 2026"
+tags: ["Windows 7", "Hyper-V", "Virtualization", "Sysadmin"]
+---
 
 Running Windows 7 on modern hardware inside Hyper-V isn’t as straightforward as it should be. If you’ve tried the usual physical-to-virtual (P2V) methods, you’ve likely hit a frustrating dead end.
 
