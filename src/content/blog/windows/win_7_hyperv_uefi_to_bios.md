@@ -1,7 +1,7 @@
 ---
 title: "How to Run Windows 7 on Hyper-V from a Modern UEFI System"
 description: "A complete guide to converting a Windows 7 installation from UEFI/GPT to BIOS/MBR so it can successfully boot inside a Hyper-V Generation 1 virtual machine."
-pubDate: "Mar 30 2026"
+pubDate: "Mar 29 2026"
 tags: ["Windows 7", "Hyper-V", "Virtualization", "Sysadmin"]
 ---
 
