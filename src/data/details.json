@@ -14,5 +14,10 @@
   "edu-jntu": {
     "title": "JNTUK: Computer Science & Engineering",
     "content": "## Core Technical Foundation\n\n- **Operating Systems**: In-depth understanding of OS concepts and Unix/Linux programming\n- **Database Management**: Designing and managing relational databases with SQL\n- **Computer Networks**: Comprehensive knowledge of TCP/IP, network protocols, and administration\n- **Software Engineering**: Applying SDLC principles, UML modeling, and testing methodologies\n- **Programming Paradigms**: Practical experience in Java, C++, and C for core system development\n- **Web Technologies**: Building responsive web applications with HTML, CSS, and scripting\n- **Security**: Foundational knowledge in Cryptography and Network Security"
-  }
+  },
+  "work-qbuildt": {
+  "title": "IT Support Technician",
+  "content": "## End-User Support & Troubleshooting\n\n- **Issue Diagnosis**: Identifying, analyzing, and documenting technical issues across systems, applications, and network connectivity\n- **Hardware & Software Support**: Troubleshooting desktops, laptops, printers, peripherals, and resolving OS/software-related problems\n- **System Installation & Configuration**: Installing and maintaining operating systems, productivity tools, and business applications\n- **Network & Connectivity Support**: Assisting with internet, email, and network access issues to ensure uninterrupted operations\n- **Device Setup & Deployment**: Configuring workstations, mobile devices, printers, and IT equipment for end users\n- **Ticketing & Documentation**: Maintaining accurate logs of issues, resolutions, and workflows using help desk systems\n- **User Guidance & Escalation**: Providing user training and escalating complex issues to senior IT staff when necessary"
+}
+
 }
