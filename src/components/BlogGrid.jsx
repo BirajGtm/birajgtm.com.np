@@ -73,7 +73,7 @@ export default function BlogGrid({ posts }) {
                 {filteredPosts.map((post, index) => (
                     <div key={post.id} className={`${index === 0 && searchTerm === '' && selectedTag === 'All' ? 'md:col-span-2' : ''} group`}>
                         <a 
-                            href={post.isExternal ? `/blog/devto/${post.slug}/` : `/blog/${post.id}/`} 
+                            href={post.isExternal ? `/blog/devto/${post.slug}` : `/blog/${post.id}`} 
                             className="block h-full"
                         >
                             <article className="h-full flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-2xl hover:border-primary/30 transition-all duration-300">
