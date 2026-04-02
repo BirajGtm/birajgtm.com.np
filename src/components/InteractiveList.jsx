@@ -40,11 +40,16 @@ export default function InteractiveList({ items, type }) {
          - Work: Left Border Line (solid)
          - Education: Alternating timeline (left/right)
       */}
-      <div className={type === 'work' ? "relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 space-y-12" : "relative"}>
+      <div className={type === 'work' ? "relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 md:ml-4 space-y-12" : "relative"}>
         
+        {/* Glowing Spine Overlay (Work) */}
+        {type === 'work' && (
+          <div className="absolute -left-[2px] top-0 h-full w-[2px] bg-gradient-to-b from-primary via-primary/30 to-transparent opacity-50 block"></div>
+        )}
+
         {/* Central Timeline for Education */}
         {type === 'education' && (
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 via-primary/20 to-primary/50"></div>
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/80 via-primary/30 to-transparent"></div>
         )}
         
         {/* Alternating Layout */}
@@ -63,11 +68,15 @@ export default function InteractiveList({ items, type }) {
                   ========================== */}
               {type === 'work' && (
                 <div className="relative pl-10 pb-2">
-                  <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-white dark:bg-darkBg border-4 border-slate-300 dark:border-slate-700 group-hover:border-primary group-hover:scale-125 transition-all duration-300 shadow-sm z-10"></div>
-                  <div className="bg-white dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-primary/30 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-primary/10 transition-colors"></div>
+                  <div className="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-white dark:bg-darkBg border-[3px] border-primary group-hover:scale-125 transition-all duration-300 shadow-[0_0_10px_rgba(59,130,246,0.6)] z-10"></div>
+                  <div className="absolute -left-[14px] top-[19px] w-6 h-6 rounded-full bg-primary/20 animate-ping z-0 group-hover:opacity-0"></div>
+                  
+                  <div className="bg-white/95 dark:bg-slate-900/90 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 relative overflow-hidden group/card shadow-sm">
+                    {/* Glow effect on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute top-0 right-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl -mr-20 -mt-20 opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
                     
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors flex items-center justify-between">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors flex items-center justify-between relative z-10">
                       <span>{item.role}</span>
                       {item.html && (
                         <span className="text-[10px] uppercase font-bold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 animate-pulse">
@@ -142,8 +151,9 @@ export default function InteractiveList({ items, type }) {
 
                     {/* Center Dot */}
                     <div className="w-1/12 flex justify-center relative">
-                      <div className="w-5 h-5 rounded-full bg-white dark:bg-darkBg border-4 border-slate-300 dark:border-slate-700 group-hover:border-primary group-hover:scale-125 transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] z-20"></div>
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-primary/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500 blur-sm"></div>
+                      <div className="w-5 h-5 rounded-full bg-white dark:bg-darkBg border-[3px] border-primary group-hover:scale-125 transition-all duration-300 shadow-[0_0_15px_rgba(59,130,246,0.5)] z-20"></div>
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary/20 animate-ping z-10 opacity-70 group-hover:opacity-0"></div>
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-primary/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500 blur-md z-0 pointer-events-none"></div>
                     </div>
 
                     {/* Right Side (shown for odd index) */}

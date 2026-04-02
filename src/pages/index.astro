@@ -67,18 +67,25 @@ const featuredSkills = data.skills
 			<!-- =========================================
 			     HERO SECTION
 			     ========================================= -->
-			<section id="hero" class="max-w-6xl mx-auto px-4 py-20 md:py-28">
-				<div class="grid lg:grid-cols-2 gap-12 items-center">
-					<div class="space-y-6">
+			<section id="hero" class="relative w-full overflow-hidden pt-10">
+				<!-- Animated Gradient Background Elements -->
+				<div class="absolute inset-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+					<div class="absolute -top-[10%] -right-[5%] w-[60%] h-[60%] rounded-full bg-primary/20 dark:bg-primary/10 blur-[120px] animate-pulse" style="animation-duration: 8s;"></div>
+					<div class="absolute top-[40%] -left-[5%] w-[50%] h-[50%] rounded-full bg-blue-500/10 dark:bg-blue-600/10 blur-[120px] animate-pulse" style="animation-duration: 10s;"></div>
+				</div>
+
+				<div class="relative max-w-6xl mx-auto px-4 py-24 md:py-32">
+					<div class="grid lg:grid-cols-2 gap-12 items-center">
+					<div class="space-y-6 reveal-on-scroll">
 						<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-600 dark:text-slate-300 w-fit">
 							<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
 							{data.basics.status}
 						</div>
-						<h1 class="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white">
+						<h1 class="text-5xl md:text-6xl font-black tracking-tighter text-slate-900 dark:text-white leading-tight">
 							{data.basics.name}
 						</h1>
-						<h2 class="text-2xl md:text-3xl text-primary font-medium">
-							{data.basics.role} <span class="text-slate-400 dark:text-slate-500">&</span> {data.basics.subRole}
+						<h2 class="text-2xl md:text-3xl font-bold text-primary">
+							{data.basics.role} <span class="text-slate-400 dark:text-slate-500 font-medium tracking-normal">&</span> {data.basics.subRole}
 						</h2>
 						<p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
 							{data.basics.tagline}
@@ -98,7 +105,7 @@ const featuredSkills = data.skills
 						</div>
 					</div>
 					<!-- Terminal Graphic (Interactive) -->
-					<div class="flex justify-center items-center mt-8 lg:mt-0">
+					<div class="flex justify-center items-center mt-8 lg:mt-0 animate-float drop-shadow-2xl">
 						<InteractiveTerminal client:only="react" data={data} />
 					</div>
 				</div>
@@ -107,18 +114,19 @@ const featuredSkills = data.skills
 			<!-- =========================================
 			     SKILLS
 			     ========================================= -->
-			<section id="skills" class="bg-slate-50 dark:bg-slate-800/50 border-y border-slate-200 dark:border-slate-800">
-				<div class="max-w-5xl mx-auto px-4 py-16">
-					<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3">
+			<section id="skills" class="bg-slate-50/50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800 transition-colors">
+				<div class="max-w-5xl mx-auto px-4 py-24">
+					<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3 reveal-on-scroll">
 						<span class="text-primary">⚙️</span> Technical Competencies
 					</h2>
-					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-on-scroll">
 						{featuredSkills.map((category) => (
-							<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group/cat">
-								{/* Subtle category decoration */}
-								<div class="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full -mr-4 -mt-4 group-hover/cat:bg-primary/10 transition-colors"></div>
+							<div class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group/cat hover:shadow-2xl hover:border-primary/50 hover:-translate-y-1 transition-all duration-300 backdrop-filter">
+								{/* Subtle category decoration font-bold */}
+								<div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover/cat:opacity-100 transition-opacity duration-500"></div>
+								<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-10 -mt-10 opacity-0 group-hover/cat:opacity-100 transition-opacity duration-700"></div>
 
-								<h4 class="text-lg font-semibold mb-6 text-slate-900 dark:text-white flex items-center gap-2 relative z-10">
+								<h4 class="text-lg font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-2 relative z-10 group-hover/cat:text-primary transition-colors">
 									{category.category === "OS & Devices" ? "💻" : 
 									 category.category === "Networking & Security" ? "🔒" :
 									 category.category === "Systems & Cloud" ? "☁️" :
@@ -173,33 +181,43 @@ const featuredSkills = data.skills
 			<!-- =========================================
 			     PROFESSIONAL TIMELINE (Interactive)
 			     ========================================= -->
-			<section id="experience" class="max-w-4xl mx-auto px-4 py-20">
+			<section id="experience" class="max-w-4xl mx-auto px-4 py-24">
 				
 				<!-- 1. EXPERIENCE -->
-				<div class="mb-20">
-					<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3">
-						<span class="text-primary">💼</span> Professional Experience
-					</h2>
+				<div class="mb-24">
+					<div class="reveal-on-scroll">
+						<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3">
+							<span class="text-primary">💼</span> Professional Experience
+						</h2>
+					</div>
 					<!-- React Component handles the click & modal -->
-					<InteractiveList client:load items={enhancedWork} type="work" />
+					<div class="reveal-on-scroll" style="transition-delay: 100ms;">
+						<InteractiveList client:load items={enhancedWork} type="work" />
+					</div>
 				</div>
 
 				<!-- 2. EDUCATION -->
-				<div class="mb-20">
-					<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3">
-						<span class="text-primary">🎓</span> Education
-					</h2>
+				<div class="mb-24">
+					<div class="reveal-on-scroll">
+						<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3">
+							<span class="text-primary">🎓</span> Education
+						</h2>
+					</div>
 					<!-- React Component handles the click & modal -->
-					<InteractiveList client:load items={enhancedEducation} type="education" />
+					<div class="reveal-on-scroll" style="transition-delay: 100ms;">
+						<InteractiveList client:load items={enhancedEducation} type="education" />
+					</div>
 				</div>
 
 				<!-- 3. CERTIFICATIONS -->
 				<div id="certifications">
-					<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3">
-						<span class="text-primary">📜</span> Certifications
-					</h2>
+					<div class="reveal-on-scroll">
+						<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-10 flex items-center gap-3">
+							<span class="text-primary">📜</span> Certifications
+						</h2>
+					</div>
 					
-					<div class="flex flex-col gap-4">
+					<div class="flex flex-col gap-4 reveal-on-scroll" style="transition-delay: 100ms;">
 						{data.certs.map((cert) => (
 							<a 
 								href={cert.url} 
@@ -245,13 +263,13 @@ const featuredSkills = data.skills
 			<!-- =========================================
 			     PROJECTS
 			     ========================================= -->
-			<section id="projects" class="bg-slate-50 dark:bg-slate-800/50 border-y border-slate-200 dark:border-slate-800">
-				<div class="max-w-5xl mx-auto px-4 py-20">
-					<div class="flex items-center justify-between mb-12">
+			<section id="projects" class="bg-slate-50/50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800 transition-colors">
+				<div class="max-w-5xl mx-auto px-4 py-24">
+					<div class="flex items-center justify-between mb-12 reveal-on-scroll">
 						<h2 class="text-3xl font-bold text-slate-900 dark:text-white">Featured Projects</h2>
 						<a href="/projects" class="hidden md:inline-flex text-primary font-medium hover:underline">View All →</a>
 					</div>
-					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-on-scroll" style="transition-delay: 100ms;">
 						{projects.map((project) => (
 							<ProjectCard 
 								client:visible 
@@ -271,12 +289,12 @@ const featuredSkills = data.skills
 			<!-- =========================================
 			     LATEST BLOG POSTS (New Premium Design)
 			     ========================================= -->
-			<section id="blog" class="max-w-5xl mx-auto px-4 py-20">
-				<div class="flex items-center justify-between mb-8">
+			<section id="blog" class="max-w-5xl mx-auto px-4 py-24">
+				<div class="flex items-center justify-between mb-8 reveal-on-scroll">
 					<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Latest Blog Posts</h2>
 					<a href="/blog" class="text-primary hover:underline">Read Blog →</a>
 				</div>
-				<div class="grid md:grid-cols-3 gap-6">
+				<div class="grid md:grid-cols-3 gap-6 reveal-on-scroll" style="transition-delay: 100ms;">
 					{posts.map((post) => (
 						<a 
 							href={post.isExternal ? `/blog/devto/${post.slug}/` : `/blog/${post.id}/`} 
@@ -377,5 +395,54 @@ const featuredSkills = data.skills
 
 		</main>
 		<Footer />
+
+		<!-- Global styles for animations & scroll reveal -->
+		<style is:global>
+			.reveal-on-scroll {
+				opacity: 0;
+				transform: translateY(30px);
+				transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			.reveal-on-scroll.animate-in {
+				opacity: 1;
+				transform: none !important;
+			}
+			
+			@keyframes float {
+				0% { transform: translateY(0px); }
+				50% { transform: translateY(-12px); }
+				100% { transform: translateY(0px); }
+			}
+			.animate-float {
+				animation: float 6s ease-in-out infinite;
+			}
+		</style>
+
+		<!-- Scroll Reveal Observer Script -->
+		<script>
+			function initScrollReveal() {
+				const observerOptions = {
+					root: null,
+					rootMargin: '0px',
+					threshold: 0.1
+				};
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('animate-in');
+							observer.unobserve(entry.target);
+						}
+					});
+				}, observerOptions);
+
+				document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+					observer.observe(el);
+				});
+			}
+
+			document.addEventListener("DOMContentLoaded", initScrollReveal);
+			document.addEventListener("astro:after-swap", initScrollReveal);
+		</script>
 	</body>
 </html>

@@ -14,6 +14,7 @@ import data from "../data/portfolio.json";
 
 // Check if we're on the homepage
 const isHomepage = Astro.url.pathname === "/";
+const isBlogPage = Astro.url.pathname.startsWith("/blog");
 ---
 
 <header
@@ -88,7 +89,7 @@ const isHomepage = Astro.url.pathname === "/";
             </>
           )
         }
-        <HeaderLink href="/projects">Projects</HeaderLink>
+        {!isBlogPage && <HeaderLink href="/projects">Projects</HeaderLink>}
         <HeaderLink href="/blog">Blog</HeaderLink>
 
         <!-- SEPARATOR -->
@@ -132,14 +133,14 @@ const isHomepage = Astro.url.pathname === "/";
         >
           Home <span class="text-primary opacity-20 transition-opacity">→</span>
         </a>
-        <a
-          href="/projects"
-          class="px-4 py-6 text-4xl font-black text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 flex items-center justify-between group active:bg-slate-50 dark:active:bg-slate-900 rounded-2xl transition-colors"
-        >
-          Projects <span class="text-primary opacity-20 transition-opacity"
-            >→</span
+        {!isBlogPage && (
+          <a
+            href="/projects"
+            class="px-4 py-6 text-4xl font-black text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 flex items-center justify-between group active:bg-slate-50 dark:active:bg-slate-900 rounded-2xl transition-colors"
           >
-        </a>
+            Projects <span class="text-primary opacity-20 transition-opacity">→</span>
+          </a>
+        )}
         <a
           href="/blog"
           class="px-4 py-6 text-4xl font-black text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 flex items-center justify-between group active:bg-slate-50 dark:active:bg-slate-900 rounded-2xl transition-colors"
