@@ -11,8 +11,16 @@
     "resumeUrl": "/resume.pdf"
   },
   "socials": [
-    { "network": "LinkedIn", "url": "https://linkedin.com/in/birajgtm", "icon": "linkedin" },
-    { "network": "GitHub", "url": "https://github.com/birajgtm", "icon": "github" }
+    {
+      "network": "LinkedIn",
+      "url": "https://linkedin.com/in/birajgtm",
+      "icon": "linkedin"
+    },
+    {
+      "network": "GitHub",
+      "url": "https://github.com/birajgtm",
+      "icon": "github"
+    }
   ],
   "work": [
     {
@@ -22,14 +30,6 @@
       "date": "Mar 2026 - Present",
       "location": "Markham",
       "description": "End-user troubleshooting, system maintenance, and network support to ensure reliable IT operations."
-    },
-    {
-      "company": "AT&T",
-      "role": "Technical Support Specialist",
-      "detailId": "work-att",
-      "date": "Apr 2025 - Feb 2026",
-      "location": "Remote / ON",
-      "description": "Providing Tier 1-2 support, managing IT operations, and successfully resolving an average of 140 tickets per month."
     },
     {
       "company": "Nabil Bank Limited",
@@ -57,94 +57,283 @@
     }
   ],
   "certs": [
-    { "name": "Microsoft 365: Endpoint Administrator Associate", "date": "Jan 2026", "issuer": "Microsoft", "url": "https://learn.microsoft.com/en-us/users/birajgautam-1606/credentials/e4cd94ed055102f4?ref=https%3A%2F%2Fwww.birajgtm.com.np%2F" },
-    { "name": "Microsoft Certified: Azure Fundamentals", "date": "Jan 2026", "issuer": "Microsoft", "url": "https://learn.microsoft.com/api/credentials/share/en-us/BirajGautam-1606/9BFC333D60120138" },
-    { "name": "CompTIA A+", "date": "Nov 2025", "issuer": "CompTIA", "url": "https://www.credly.com/badges/62899f78-58f2-47d8-9cd0-09065894af78" },
-    { "name": "Training: CCNA Routing & Switching", "date": "2022", "issuer": "Laba Nepal", "url": "https://www.labanepal.com/" },
-    { "name": "Fortinet Associate in Cybersecurity", "date": "Jan 2026", "issuer": "Fortinet", "url": "https://www.credly.com/badges/f035c6e0-a331-4b2f-a3d3-bc1f93a9c8b8" }
+    {
+      "name": "Microsoft 365: Endpoint Administrator Associate",
+      "date": "Jan 2026",
+      "issuer": "Microsoft",
+      "url": "https://learn.microsoft.com/en-us/users/birajgautam-1606/credentials/e4cd94ed055102f4?ref=https%3A%2F%2Fwww.birajgtm.com.np%2F"
+    },
+    {
+      "name": "Microsoft Certified: Azure Fundamentals",
+      "date": "Jan 2026",
+      "issuer": "Microsoft",
+      "url": "https://learn.microsoft.com/api/credentials/share/en-us/BirajGautam-1606/9BFC333D60120138"
+    },
+    {
+      "name": "CompTIA A+",
+      "date": "Nov 2025",
+      "issuer": "CompTIA",
+      "url": "https://www.credly.com/badges/62899f78-58f2-47d8-9cd0-09065894af78"
+    },
+    {
+      "name": "Training: CCNA Routing & Switching",
+      "date": "2022",
+      "issuer": "Laba Nepal",
+      "url": "https://www.labanepal.com/"
+    },
+    {
+      "name": "Fortinet Associate in Cybersecurity",
+      "date": "Jan 2026",
+      "issuer": "Fortinet",
+      "url": "https://www.credly.com/badges/f035c6e0-a331-4b2f-a3d3-bc1f93a9c8b8"
+    }
   ],
   "skills": [
     {
       "category": "OS & Devices",
       "items": [
-        { "name": "Windows Server", "level": "advanced", "featured": true },
-        { "name": "Windows 10/11", "level": "expert", "featured": true },
-        { "name": "Linux (RHEL/Ubuntu)", "level": "advanced", "featured": true },
-        { "name": "macOS/iOS", "level": "expert", "featured": false },
-        { "name": "Android & POS", "level": "advanced", "featured": false },
-        { "name": "Laptops/Desktops", "level": "expert", "featured": false }
+        {
+          "name": "Windows Server",
+          "level": "advanced",
+          "featured": true
+        },
+        {
+          "name": "Windows 10/11",
+          "level": "expert",
+          "featured": true
+        },
+        {
+          "name": "Linux (RHEL/Ubuntu)",
+          "level": "advanced",
+          "featured": true
+        },
+        {
+          "name": "macOS/iOS",
+          "level": "expert",
+          "featured": false
+        },
+        {
+          "name": "Android & POS",
+          "level": "advanced",
+          "featured": false
+        },
+        {
+          "name": "Laptops/Desktops",
+          "level": "expert",
+          "featured": false
+        }
       ]
     },
     {
       "category": "Networking & Security",
       "items": [
-        { "name": "TCP/IP, LAN/WAN", "level": "advanced", "featured": true },
-        { "name": "FortiGate Firewalls", "level": "advanced", "featured": true },
-        { "name": "VPN & SSL/TLS", "level": "expert", "featured": true },
-        { "name": "DNS/DHCP", "level": "expert", "featured": false },
-        { "name": "IPS/IDS Concepts", "level": "intermediate", "featured": false },
-        { "name": "EDR/XDR & SNMP", "level": "intermediate", "featured": false },
-        { "name": "IP Addressing", "level": "expert", "featured": false }
+        {
+          "name": "TCP/IP, LAN/WAN",
+          "level": "advanced",
+          "featured": true
+        },
+        {
+          "name": "FortiGate Firewalls",
+          "level": "advanced",
+          "featured": true
+        },
+        {
+          "name": "VPN & SSL/TLS",
+          "level": "expert",
+          "featured": true
+        },
+        {
+          "name": "DNS/DHCP",
+          "level": "expert",
+          "featured": false
+        },
+        {
+          "name": "IPS/IDS Concepts",
+          "level": "intermediate",
+          "featured": false
+        },
+        {
+          "name": "EDR/XDR & SNMP",
+          "level": "intermediate",
+          "featured": false
+        },
+        {
+          "name": "IP Addressing",
+          "level": "expert",
+          "featured": false
+        }
       ]
     },
     {
       "category": "Systems & Cloud",
       "items": [
-        { "name": "Active Directory/GPO", "level": "expert", "featured": true },
-        { "name": "M365 / Entra ID", "level": "expert", "featured": true },
-        { "name": "Microsoft Intune", "level": "advanced", "featured": true },
-        { "name": "Azure (Foundational)", "level": "advanced", "featured": false },
-        { "name": "Microsoft Exchange", "level": "advanced", "featured": false }
+        {
+          "name": "Active Directory/GPO",
+          "level": "expert",
+          "featured": true
+        },
+        {
+          "name": "M365 / Entra ID",
+          "level": "expert",
+          "featured": true
+        },
+        {
+          "name": "Microsoft Intune",
+          "level": "advanced",
+          "featured": true
+        },
+        {
+          "name": "Azure (Foundational)",
+          "level": "advanced",
+          "featured": false
+        },
+        {
+          "name": "Microsoft Exchange",
+          "level": "advanced",
+          "featured": false
+        }
       ]
     },
     {
-        "category": "Virtualization & Infra",
-        "items": [
-          { "name": "VMware vSphere/ESXi", "level": "advanced", "featured": true },
-          { "name": "Microsoft Hyper-V", "level": "advanced", "featured": true },
-          { "name": "System Imaging", "level": "expert", "featured": true },
-          { "name": "Data Center Ops", "level": "advanced", "featured": false },
-          { "name": "Hardware Repair", "level": "expert", "featured": false }
-        ]
+      "category": "Virtualization & Infra",
+      "items": [
+        {
+          "name": "VMware vSphere/ESXi",
+          "level": "advanced",
+          "featured": true
+        },
+        {
+          "name": "Microsoft Hyper-V",
+          "level": "advanced",
+          "featured": true
+        },
+        {
+          "name": "System Imaging",
+          "level": "expert",
+          "featured": true
+        },
+        {
+          "name": "Data Center Ops",
+          "level": "advanced",
+          "featured": false
+        },
+        {
+          "name": "Hardware Repair",
+          "level": "expert",
+          "featured": false
+        }
+      ]
     },
     {
       "category": "ITSM & Operations",
       "items": [
-        { "name": "ServiceNow/Jira", "level": "expert", "featured": true },
-        { "name": "ITIL/ITSM Framework", "level": "expert", "featured": true },
-        { "name": "SLA Compliance", "level": "expert", "featured": true },
-        { "name": "ServiceDesk Plus", "level": "expert", "featured": false },
-        { "name": "Zendesk Support", "level": "expert", "featured": false },
-        { "name": "Knowledge Bases", "level": "advanced", "featured": false }
+        {
+          "name": "ServiceNow/Jira",
+          "level": "expert",
+          "featured": true
+        },
+        {
+          "name": "ITIL/ITSM Framework",
+          "level": "expert",
+          "featured": true
+        },
+        {
+          "name": "SLA Compliance",
+          "level": "expert",
+          "featured": true
+        },
+        {
+          "name": "ServiceDesk Plus",
+          "level": "expert",
+          "featured": false
+        },
+        {
+          "name": "Zendesk Support",
+          "level": "expert",
+          "featured": false
+        },
+        {
+          "name": "Knowledge Bases",
+          "level": "advanced",
+          "featured": false
+        }
       ]
     },
     {
       "category": "Automation & Monitoring",
       "items": [
-        { "name": "Python Automation", "level": "expert", "featured": true },
-        { "name": "Splunk/OpManager", "level": "advanced", "featured": true },
-        { "name": "SQL & Bash Scripting", "level": "advanced", "featured": true },
-        { "name": "JavaScript", "level": "intermediate", "featured": false },
-        { "name": "REST API/JSON", "level": "advanced", "featured": false }
+        {
+          "name": "Python Automation",
+          "level": "expert",
+          "featured": true
+        },
+        {
+          "name": "Splunk/OpManager",
+          "level": "advanced",
+          "featured": true
+        },
+        {
+          "name": "SQL & Bash Scripting",
+          "level": "advanced",
+          "featured": true
+        },
+        {
+          "name": "JavaScript",
+          "level": "intermediate",
+          "featured": false
+        },
+        {
+          "name": "REST API/JSON",
+          "level": "advanced",
+          "featured": false
+        }
       ]
     },
     {
-        "category": "Tools & Protocols",
-        "items": [
-            { "name": "RDP & SSH", "level": "expert", "featured": false },
-            { "name": "Outlook & TeamViewer", "level": "expert", "featured": false },
-            { "name": "SAML 2.0/SSO", "level": "advanced", "featured": false },
-            { "name": "HTTP/SMTP/POP3", "level": "advanced", "featured": false },
-            { "name": "DocuSign/Adobe", "level": "expert", "featured": false },
-            { "name": "Asset Tracking", "level": "expert", "featured": false }
-        ]
+      "category": "Tools & Protocols",
+      "items": [
+        {
+          "name": "RDP & SSH",
+          "level": "expert",
+          "featured": false
+        },
+        {
+          "name": "Outlook & TeamViewer",
+          "level": "expert",
+          "featured": false
+        },
+        {
+          "name": "SAML 2.0/SSO",
+          "level": "advanced",
+          "featured": false
+        },
+        {
+          "name": "HTTP/SMTP/POP3",
+          "level": "advanced",
+          "featured": false
+        },
+        {
+          "name": "DocuSign/Adobe",
+          "level": "expert",
+          "featured": false
+        },
+        {
+          "name": "Asset Tracking",
+          "level": "expert",
+          "featured": false
+        }
+      ]
     }
   ],
   "projects": [
     {
       "title": "Smart Parking Detector",
       "description": "Two-stage computer vision pipeline using CNNs for real-time space occupancy status.",
-      "tags": ["Python", "PyTorch", "Gradio"],
+      "tags": [
+        "Python",
+        "PyTorch",
+        "Gradio"
+      ],
       "link": "/projects/smart-parking",
       "fallbackIcon": "code",
       "category": "Coding",
@@ -154,7 +343,11 @@
     {
       "title": "AskGeorge+ AI",
       "description": "RAG system using LangChain and Google Gemini for automated student support.",
-      "tags": ["Python", "LangChain", "LLM"],
+      "tags": [
+        "Python",
+        "LangChain",
+        "LLM"
+      ],
       "link": "/projects/ask-george",
       "fallbackIcon": "python",
       "category": "Coding",
@@ -164,7 +357,11 @@
     {
       "title": "Book My Seat",
       "description": "Node.js and PostgreSQL backend for scalable restaurant reservations.",
-      "tags": ["Node.js", "PostgreSQL", "API"],
+      "tags": [
+        "Node.js",
+        "PostgreSQL",
+        "API"
+      ],
       "link": "/projects/book-my-seat",
       "fallbackIcon": "react",
       "category": "Coding",
@@ -174,7 +371,11 @@
     {
       "title": "Bhansa Ghar",
       "description": "Full-stack food delivery platform using MongoDB and Docker containerization.",
-      "tags": ["MongoDB", "Docker", "Node.js"],
+      "tags": [
+        "MongoDB",
+        "Docker",
+        "Node.js"
+      ],
       "link": "/projects/bhansa-ghar",
       "fallbackIcon": "code",
       "category": "Coding",
@@ -184,7 +385,11 @@
     {
       "title": "ITSM Implementation",
       "description": "Engineered ServiceDesk Plus & OpManager with SAML 2.0 Azure SSO integration.",
-      "tags": ["ITSM", "Azure AD", "SSO"],
+      "tags": [
+        "ITSM",
+        "Azure AD",
+        "SSO"
+      ],
       "link": "/projects/itsm-implementation",
       "fallbackIcon": "shield",
       "category": "IT",
@@ -194,7 +399,11 @@
     {
       "title": "FortiGate Refresh",
       "description": "Firewall infrastructure upgrade across DC and 30+ branches with zero downtime.",
-      "tags": ["Fortinet", "VPN", "Security"],
+      "tags": [
+        "Fortinet",
+        "VPN",
+        "Security"
+      ],
       "link": "/projects/fortigate-refresh",
       "fallbackIcon": "shield",
       "category": "IT",
@@ -204,7 +413,11 @@
     {
       "title": "Vendor Selection Committee",
       "description": "Technical analyst for nabilbank.com architecture and security evaluation.",
-      "tags": ["Analysis", "Security", "Strategy"],
+      "tags": [
+        "Analysis",
+        "Security",
+        "Strategy"
+      ],
       "link": "/projects/website-selection",
       "fallbackIcon": "code",
       "category": "IT",
@@ -214,7 +427,11 @@
     {
       "title": "Win10 Enterprise Rollout",
       "description": "Standardized deployment of 200+ devices with custom ISO and hardware upgrades.",
-      "tags": ["Deployment", "Windows 10", "Imaging"],
+      "tags": [
+        "Deployment",
+        "Windows 10",
+        "Imaging"
+      ],
       "link": "/projects/win10-refresh",
       "fallbackIcon": "shield",
       "category": "IT",
@@ -224,12 +441,24 @@
     {
       "title": "My Portfolio Architecture",
       "description": "Hybrid IT portfolio built using Astro, React, and Tailwind CSS.",
-      "tags": ["Astro", "React", "Tailwind"],
+      "tags": [
+        "Astro",
+        "React",
+        "Tailwind"
+      ],
       "link": "/projects/my-portfolio",
       "fallbackIcon": "react",
       "category": "Coding",
       "visible": true,
       "featured": false
     }
-  ]
+  ],
+  "extra": {
+    "company": "AT&T",
+    "role": "Technical Support Specialist",
+    "detailId": "work-att",
+    "date": "Apr 2025 - Feb 2026",
+    "location": "Remote / ON",
+    "description": "Providing Tier 1-2 support, managing IT operations, and successfully resolving an average of 140 tickets per month."
+  }
 }
